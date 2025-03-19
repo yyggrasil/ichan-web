@@ -1,0 +1,10 @@
+services:
+    api:
+      build: .
+      ports:
+        - "8000:5000"
+    db:
+      image: mysql:9.2
+      restart: always
+      environment:
+        MYSQL_ROOT_PASSWORD: ""
