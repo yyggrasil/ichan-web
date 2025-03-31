@@ -68,7 +68,36 @@ class UsuarioControler extends Controller
 
     public function update(Request $request, $id)
     {
+        $validator = Validator::make($request->all(),[
+            'name'=>'required|string|max:255',
+            'email'=>'required|email|string|max:255|unique:users,email',
+            'password'=>'sometimes|required|string|min:6'
+        ]);
         
+        if ($validator->fails()) {
+            return response()->json([
+                'message'=>'Erro nas indormações do usuário',
+                'status'=>404,
+                'errors'=>$validator->errors()
+            ],404);
+        }
+        // pega o id do usuário no banco de dados
+        $data = User::Find($id);
+
+        $data->name = $request->name ?? $data->name;
+        $data->email = $request->email ?? $data->email;
+
+        if ($request->has('password')) {
+            $data->password = Hash::make($request->password);
+        }
+
+        $data->save();
+
+        return response()->json([
+            'message'=>'Usuário alterado com sucesso',
+            'status'=>201,
+            'data'=>$data
+        ],200);
     }
 
     public function destroy(Request $request, string $id)
