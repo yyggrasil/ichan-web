@@ -13,8 +13,8 @@ class UsuarioControler extends Controller
 {
     public function index(Request $request)
     {
-        $page = $request->get('page', 1);
-        $pageSize = $request->get('pageSize', 10);
+        $page = $request->get('page', '1');
+        $pageSize = $request->get('pageSize', '10');
         $dir = $request->get('dir', 'asc');
         $props = $request->get('props', 'id');
         $search = $request->get('search', '');
