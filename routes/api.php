@@ -8,9 +8,14 @@ Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
 
-Route::get('/user/index', [UsuarioControler::class, 'index']);
-Route::get('/user/show/{id}', [UsuarioControler::class, 'show']);
 
-Route::post('/user/store', [UsuarioControler::class, 'store']);
+Route::prefix('user')->group(function () {
+    Route::get('/index', [UsuarioControler::class, 'index']);
+    Route::get('/show/{id}', [UsuarioControler::class, 'show']);
 
-Route::delete('/user/destroy/{id}', [UsuarioControler::class, 'destroy']);
+    Route::post('/store', [UsuarioControler::class, 'store']);
+
+    Route::put('/update/{id}', [UsuarioControler::class, 'update']);
+    
+    Route::delete('/destroy/{id}', [UsuarioControler::class, 'destroy']);
+});
