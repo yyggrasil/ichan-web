@@ -83,6 +83,14 @@ class UsuarioControler extends Controller
         }
         // pega o id do usuário no banco de dados
         $data = User::Find($id);
+        // verifica se o usuário existe
+        if (!$data) {
+            return response()->json([
+                'message'=>'Usuário não localizado',
+                'data'=>$id,
+                'status'=>404
+            ],404);
+        }
 
         $data->name = $request->name ?? $data->name;
         $data->email = $request->email ?? $data->email;
