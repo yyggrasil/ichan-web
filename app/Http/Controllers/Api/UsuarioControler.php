@@ -11,11 +11,23 @@ use App\Models\User;
 
 class UsuarioControler extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
+        $page = $request->get('page', 1);
+        $pageSize = $request->get('pageSize', 10);
+        $dir = $request->get('dir', 'asc');
+        $props = $request->get('props', 'id');
+        $search = $request->get('search', '');
+
+
         return response()->json([
-            'message'=>'Meu primeiro acesso ao controlador',
-            'status'=>200
+            'message'=>'Relatorio de usuários',
+            'status'=>200,
+            'page'=>$page,
+            'pageSize'=>$pageSize,
+            'dir'=>$dir,
+            'props'=>$props,
+            'search'=>$search,
         ],200);
     }
 
@@ -76,7 +88,7 @@ class UsuarioControler extends Controller
         
         if ($validator->fails()) {
             return response()->json([
-                'message'=>'Erro nas indormações do usuário',
+                'message'=>'Erro nas informações do usuário',
                 'status'=>404,
                 'errors'=>$validator->errors()
             ],404);
