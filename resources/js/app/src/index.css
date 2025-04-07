@@ -1,68 +1,130 @@
-:root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
-body {
+* {
+  box-sizing: border-box;
   margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
+}
+
+html, body {
   min-height: 100vh;
 }
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+body {
+  font-family: 'Arial', Helvetic, sans-serif;
+  margin: 0;
+  padding: 0;
+  font-size: 14px;
+  color: #0B2545;
+  background-color: #EEF4ED;
+}
+h1, h2, h3, h4, h5, h6, p {
+  margin: 0;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+.btn, .btn-add, .btn-edit, .btn-delete, .btn-show {
+  outline: 0;
+  border: 0;
+  display: inline-block;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+  color: #EEF4ED;
+  background-color: #134074;
+  transition: background-color 0.3s ease;
+  font-size: 18px;
+  cursor: pointer;;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+/* 
+  1 rm == 16px
+  1em == 16px
+*/
+
+.btn-block{
+
+}
+.btn-add, .btn-edit, .btn-delete, .btn-show{
+  padding: 0.5rem 0.75rem;
+  font-size: 14px;
+  border-radius: 4px;
+}
+
+.btn-add {
+  background-color: #4CAF50;
+}
+
+.btn-delete{
+  background-color: #f44336;
+}
+
+.btn-show{
+  background-color: #8DA9C4;
+}
+
+/* estilo para tabela */
+table {
+  width: 100%;
+  border-spacing: 0;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 10px 1rem;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+  border-right: 1px solid #ddd;
+  border-top: 1px solid #ddd;
+  border-left: 1px solid #ddd;
+}
+
+th{
+  text-align: center;
+}
+
+tbody tr:hover{
+  background-color: #D9DFD8;
+}
+
+table > thead > tr > th{
+  text-align: left;
+  padding: 0.5rem 0.5rem;
+  background-color: #13315C;
+  color: #EEF4ED;
+}
+
+table > thead > th > td.center{
+  padding: 0.5rem 0.5rem;
+  border-bottom: 1px solid #efefef;
+  text-align: center;
+  vertical-align: middle;
+}
+
+table > thead > th > td.center{
+  padding: 0.5rem 0.5rem;
+  border-bottom: 1px solid #efefef;
+  text-align: center;
+  vertical-align: middle;
+}
+
+th.actions, td.actions {
+  width: 1%;
+  white-space: nowrap;
+  text-align: center;
+  min-height: 100vh;;
+}
+
+.display {
+  display: flex;
+  justify-content: center;
+  padding: 20px;;
+}
+
+.card {
+  width: 70%;
+  max-width: 100%;
+  min-height: 30%;
+  background-color: #fff;
+  border-radius: 0.5rem;
+  box-shadow: 0.5px 0.5px 2px rgba(0,0,0);
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 1rem;
+  margin-top: 0.5rem;;
 }
