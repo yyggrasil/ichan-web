@@ -58,15 +58,15 @@ function UserFormList() {
                     <td>{user.email}</td>
 
                     <td className='center actions'>
-                      <Link to={'/user/update'} className='btn-edit'>Update</Link>
+                      <Link to={`/user/update/${user.id}`} className='btn-edit'>Update</Link>
                     </td>
 
                     <td className='center actions'>
-                      <Link to={'/user/destroy'} className='btn-delete'>Destroy</Link>
+                      <Link to={`/user/destroy/${user.id}`} className='btn-delete'>Destroy</Link>
                     </td>
                   
                     <td className='center actions'>
-                      <Link to={'/user/show/'} className='btn-show'>Show</Link>
+                      <Link to={`/user/show/${user.id}`} className='btn-show'>Show</Link>
                     </td>
 
                   </tr>

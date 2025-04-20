@@ -2,7 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Api\UsuarioControler;
+use App\Http\Controllers\UsuarioController;
 
 Route::get('/user', function (Request $request) {
     return $request->user();
@@ -10,12 +10,12 @@ Route::get('/user', function (Request $request) {
 
 
 Route::prefix('user')->group(function () {
-    Route::get('/index', [UsuarioControler::class, 'index']);
-    Route::get('/show/{id}', [UsuarioControler::class, 'show']);
+    Route::get('/index', [UsuarioController::class, 'index']);
+    Route::get('/show/{id}', [UsuarioController::class, 'show']);
 
-    Route::post('/store', [UsuarioControler::class, 'store']);
+    Route::post('/store', [UsuarioController::class, 'store']);
 
-    Route::put('/update/{id}', [UsuarioControler::class, 'update']);
+    Route::put('/update/{id}', [UsuarioController::class, 'update']);
     
-    Route::delete('/destroy/{id}', [UsuarioControler::class, 'destroy']);
+    Route::delete('/destroy/{id}', [UsuarioController::class, 'destroy']);
 });

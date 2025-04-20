@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Validator;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use App\Models\User;
 
-class UsuarioControler extends Controller
+class UsuarioController extends Controller
 {
     public function index(Request $request)
     {
@@ -98,8 +98,7 @@ class UsuarioControler extends Controller
     {
         $validator = Validator::make($request->all(),[
             'name'=>'required|string|max:255',
-            'email'=>'required|email|string|max:255|unique:users,email',
-            'password'=>'sometimes|required|string|min:6'
+            'email'=>'required|email|string|max:255|unique:users,email'
         ]);
         
         if ($validator->fails()) {

@@ -41,7 +41,7 @@ h1, h2, h3, h4, h5, h6, p {
 .btn-block{
 
 }
-.btn-add, .btn-edit, .btn-delete, .btn-show{
+.btn-add, .btn-edit, .btn-delete, .btn-show, .btn-cancel{
   padding: 0.5rem 0.75rem;
   font-size: 14px;
   border-radius: 4px;
@@ -57,6 +57,11 @@ h1, h2, h3, h4, h5, h6, p {
 
 .btn-show{
   background-color: #8DA9C4;
+}
+
+.btn-cancel{
+  background-color: #36e4f4;
+  color:#fff
 }
 
 /* estilo para tabela */
