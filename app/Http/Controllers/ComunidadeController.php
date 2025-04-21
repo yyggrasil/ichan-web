@@ -92,7 +92,20 @@ class ComunidadeController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $validator = Validator::make($request->all(),[
+            'name'=>'sometimes|required|string|max:255',
+            'email'=>'sometimes|required|email|string|max:255|unique:users,email,'.$id,
+            'password'=>'sometimes|required|string|min:6',
+            'bios'=>'sometimes|nullable|string|max:255'
+        ]);
+        if ($validator->fails()) {
+            return response()->json([
+                'message'=>'Erro nas indormações do usuário',
+                'status'=>404,
+                'errors'=>$validator->errors()
+            ],404);
+        }
+        
     }
 
     /**
