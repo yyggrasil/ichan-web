@@ -63,7 +63,20 @@ class ComunidadeController extends Controller
      */
     public function show(string $id)
     {
-        //
+        try{
+            $data = Comunidade::findOrFail($id);
+            return response()->json([
+                'message'=>'Comunidade encontrada',
+                'status'=>200,
+                'data'=>$data
+            ],200);
+        } catch(HttpResponseException $e){
+            return response()->json([
+                'message'=>'Comunidade não encontrada',
+                'status'=>404,
+                'data'=>$e
+            ],404);
+        }
     }
 
     /**
