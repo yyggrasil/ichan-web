@@ -11,7 +11,35 @@ class ComunidadeController extends Controller
      */
     public function index()
     {
-        //
+        $page = $request->get('page', '1');
+        $pageSize = $request->get('pageSize', '5');
+        $dir = $request->get('dir', 'asc');
+        $props = $request->get('props', 'id');
+        $search = $request->get('search', '');
+        
+        $query = Comunidade::select('id', 'name', 'email', 'bios', 'created_at', 'updated_at')
+            ->whereNull("deleted_at")
+            ->OrderBy($props, $dir);
+
+        $total = $query->count();
+        $data = $query->offset( ($page - 1) * $pageSize)
+            ->limit($pageSize)
+            ->get();
+        $totalPages = ceil($total / $pageSize);
+        
+        
+        return response()->json([
+            'message'=>'Relatorio de comunidades',
+            'status'=>200,
+            'page'=>$page,
+            'pageSize'=>$pageSize,
+            'dir'=>$dir,
+            'props'=>$props,
+            'search'=>$search,
+            'total'=>$total,
+            'totalPages'=>$totalPages,
+            'data'=>$data
+        ],200);
     }
 
     /**

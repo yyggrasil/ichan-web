@@ -20,7 +20,7 @@ class UsuarioController extends Controller
         $search = $request->get('search', '');
 
 
-        $query = User::select('id', 'name', 'email', 'created_at', 'updated_at')
+        $query = User::select('id', 'name', 'email', 'bios', 'created_at', 'updated_at')
             ->whereNull("deleted_at")
             ->OrderBy($props, $dir);
 
@@ -52,7 +52,8 @@ class UsuarioController extends Controller
         $validator = Validator::make($request->all(),[
             'name'=>'required|string|max:255',
             'email'=>'required|email|string|max:255|unique:users,email',
-            'password'=>'sometimes|required|string|min:6'
+            'password'=>'sometimes|required|string|min:6',
+            'bios'=>'sometimes|nullable|string|max:255'
         ]);
 
         if ($validator->fails()) {
@@ -66,6 +67,7 @@ class UsuarioController extends Controller
         $data = User::create([
             'name'=>$request->name,
             'email'=>$request->email,
+            'bios'=>$request->bios,
             'password'=>Hash::make($request->password)
         ]);
 
