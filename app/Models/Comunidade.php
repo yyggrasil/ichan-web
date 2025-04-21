@@ -18,7 +18,7 @@ class Comunidade extends Model
      */
     protected $fillable = [
         'name',
-        'Description',
+        'description',
     ];
 
     /**

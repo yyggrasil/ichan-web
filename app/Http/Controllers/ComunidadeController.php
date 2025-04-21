@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use Symfony\Component\HttpKernel\Exception\HttpResponseException;
+use App\Models\Comunidade;
 
 class ComunidadeController extends Controller
 {
@@ -94,18 +98,34 @@ class ComunidadeController extends Controller
     {
         $validator = Validator::make($request->all(),[
             'name'=>'sometimes|required|string|max:255',
-            'email'=>'sometimes|required|email|string|max:255|unique:users,email,'.$id,
-            'password'=>'sometimes|required|string|min:6',
-            'bios'=>'sometimes|nullable|string|max:255'
+            'description'=>'nullable|string|max:255',
         ]);
         if ($validator->fails()) {
             return response()->json([
-                'message'=>'Erro nas indormações do usuário',
+                'message'=>'Erro nas indormações da comunidade',
                 'status'=>404,
                 'errors'=>$validator->errors()
             ],404);
         }
-        
+
+        $data = Comunidade::Find($id);
+        if (!$data) {
+            return response()->json([
+                'message'=>'Comunidade não encontrada',
+                'data'=>$id,
+                'status'=>404,
+            ],404);
+        }
+
+        $data->name = $request->name;
+        $data->description = $request->description;
+        $data->save();
+        return response()->json([
+            'message'=>'Comunidade atualizada com sucesso',
+            'status'=>200,
+            'data'=>$data
+        ],200);
+
     }
 
     /**
@@ -113,6 +133,19 @@ class ComunidadeController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $data = Comunidade::find($id);
+        if (!$data) {
+            return response()->json([
+                'message'=>'Comunidade não encontrada',
+                'data'=>$id,
+                'status'=>404,
+            ],404);
+        }
+        $data->delete();
+        return response()->json([
+            'message'=>'Comunidade deletada com sucesso',
+            'status'=>200,
+            'data'=>$data
+        ],200);
     }
 }
