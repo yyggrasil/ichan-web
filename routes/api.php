@@ -19,3 +19,14 @@ Route::prefix('user')->group(function () {
     
     Route::delete('/destroy/{id}', [UsuarioController::class, 'destroy']);
 });
+
+Route::prefix('comunidade')->group(function () {
+    Route::get('/index', [UsuarioController::class, 'index']);
+    Route::get('/show/{id}', [UsuarioController::class, 'show']);
+
+    Route::post('/store', [UsuarioController::class, 'store']);
+
+    Route::put('/update/{id}', [UsuarioController::class, 'update']);
+    
+    Route::delete('/destroy/{id}', [UsuarioController::class, 'destroy']);
+});
