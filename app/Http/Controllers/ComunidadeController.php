@@ -59,7 +59,24 @@ class ComunidadeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(),[
+            'name'=>'required|string|max:255',
+            'description'=>'nullable|string|max:255',
+        ]);
+        if ($validator->fails()) {
+            return response()->json([
+                'message'=>'Erro nas indormações da comunidade',
+                'status'=>404,
+                'errors'=>$validator->errors()
+            ],404);
+        }
+
+        $data = Comunidade::create($request->all());
+        return response()->json([
+            'message'=>'Comunidade criada com sucesso',
+            'status'=>200,
+            'data'=>$data
+        ],200);
     }
 
     /**
