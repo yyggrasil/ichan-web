@@ -13,7 +13,7 @@ class ComunidadeController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         $page = $request->get('page', '1');
         $pageSize = $request->get('pageSize', '5');
@@ -21,7 +21,7 @@ class ComunidadeController extends Controller
         $props = $request->get('props', 'id');
         $search = $request->get('search', '');
         
-        $query = Comunidade::select('id', 'name', 'email', 'bios', 'created_at', 'updated_at')
+        $query = Comunidade::select('id', 'name','description')
             ->whereNull("deleted_at")
             ->OrderBy($props, $dir);
 
@@ -82,7 +82,7 @@ class ComunidadeController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Request $request, string $id)
     {
         try{
             $data = Comunidade::findOrFail($id);
@@ -148,7 +148,7 @@ class ComunidadeController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Request $request, string $id)
     {
         $data = Comunidade::find($id);
         if (!$data) {

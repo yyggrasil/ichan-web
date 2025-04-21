@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
@@ -11,9 +12,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('comunidade', function (Blueprint $table) {
+        Schema::create('comunidades', function (Blueprint $table) {
             $table->id();
+            $table->string('name', 255)->unique();
+            $table->string('description', 255)->nullable();
             $table->timestamps();
+            $table->softdeletes();
         });
     }
 
@@ -22,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('comunidade');
+        Schema::dropIfExists('comunidades');
     }
 };
