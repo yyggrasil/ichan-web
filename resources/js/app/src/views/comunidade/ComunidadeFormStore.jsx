@@ -2,24 +2,24 @@ import React, { Fragment, useEffect, useState } from 'react'
 import axiosClient from '../../axiosClient';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 
-function UserFormStore()
+function ComunidadeFormStore()
 {
     const navigate = useNavigate();
 
-    const [user, setUser] = useState({
+    const [comunidade, setComunidade] = useState({
         id:null,
         name:'',
-        email:'',
+        description:'',
     });
 
     // Função do tipo Anônima
     const onSubmit = (e) => {
         e.preventDefault();
-        axiosClient.post(`/user/store`, user)
+        axiosClient.post(`/comunidade/store`, comunidade)
             .then(() =>{
-                setUser({});
-                console.log('Usuário incluído com sucesso');
-                navigate('/user/index')
+                setComunidade({});
+                console.log('comunidade incluída com sucesso');
+                navigate('/comunidade/index')
             }).catch((error)=>{
                 console.log(error);
             })
@@ -29,7 +29,7 @@ function UserFormStore()
 
     const onCancel = (e) => {
         //e.preventDefault();
-        navigate('/user/index');
+        navigate('/comunidade/index');
         //console.log(e);
         //console.log("Passando pela função onSubmit")
     }
@@ -40,40 +40,31 @@ function UserFormStore()
         <Fragment>
             <div className="display">
                 <div className="card animated fadeinDown">
-                    <h1>Inclusão de Usuário</h1>
+                    <h1>Inclusão de Comunidade</h1>
 
                     <form onSubmit={(e)=>onSubmit(e)}>
                         <input
                             type="text"
-                            value={user.name}
-                            placeholder="Nome do Usuário"
+                            value={comunidade.name}
+                            placeholder="Nome da Comunidade"
                             onChange={
-                                e => setUser({
-                                    ...user, name:e.target.value
+                                e => setComunidade({
+                                    ...comunidade, name:e.target.value
                                 })
                             } />
                         <input
-                            value={user.email}
-                            placeholder="Email"
+                            value={comunidade.description}
+                            placeholder="Descrição"
                             onChange={
-                                e => setUser({
-                                    ...user, email:e.target.value
-                                })
-                            } />
-                        <input
-                            type="password"
-                            value={user.password}
-                            placeholder="Senha"
-                            onChange={
-                                e => setUser({
-                                    ...user, password:e.target.value
+                                e => setComunidade({
+                                    ...comunidade, description:e.target.value
                                 })
                             } />
                         <button className="btn btn-edit">Salvar</button>
                         <Link
                             type='button' 
                             className='btn btn-cancel'
-                            to='/user/index'>
+                            to='/comunidade/index'>
                                 Cancelar
                         </Link>
                     </form>
@@ -85,4 +76,4 @@ function UserFormStore()
     )
 }
 
-export default UserFormStore
+export default ComunidadeFormStore

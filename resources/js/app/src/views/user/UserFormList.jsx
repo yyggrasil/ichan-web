@@ -40,7 +40,10 @@ function UserFormList() {
             <tr>
               <th>ID</th>
               <th>Nome</th>
+              <th>Username</th>
               <th>Email</th>
+              <th>Data de Nascimento</th>
+              <th>Bios</th>
               <th className='center actions' colSpan={3}>Ações</th>
             </tr>
           </thead>
@@ -55,7 +58,13 @@ function UserFormList() {
 
                     <td>{user.name}</td>
 
+                    <td>{user.username}</td>
+
                     <td>{user.email}</td>
+
+                    <td>{user.birth_date}</td>
+
+                    <td>{user.bios}</td>
 
                     <td className='center actions'>
                       <Link to={`/user/update/${user.id}`} className='btn-edit'>Update</Link>

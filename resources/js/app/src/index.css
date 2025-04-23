@@ -86,6 +86,10 @@ th{
 
 tbody tr:hover{
   background-color: #D9DFD8;
+  border-bottom: 1px solid #ddd;
+  border-right: 1px solid #ddd;
+  border-top: 1px solid #ddd;
+  border-left: 1px solid #ddd;
 }
 
 table > thead > tr > th{

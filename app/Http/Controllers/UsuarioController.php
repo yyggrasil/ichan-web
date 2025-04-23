@@ -20,7 +20,7 @@ class UsuarioController extends Controller
         $search = $request->get('search', '');
 
 
-        $query = User::select('id', 'name', 'email', 'bios', 'created_at', 'updated_at')
+        $query = User::select("*")
             ->whereNull("deleted_at")
             ->OrderBy($props, $dir);
 
@@ -51,14 +51,16 @@ class UsuarioController extends Controller
     {
         $validator = Validator::make($request->all(),[
             'name'=>'required|string|max:255',
+            'username'=>'sometimes|required|string|max:255|unique:users,username',
             'email'=>'required|email|string|max:255|unique:users,email',
+            'birth_date'=>'sometimes|nullable|date',
             'password'=>'sometimes|required|string|min:6',
             'bios'=>'sometimes|nullable|string|max:255'
         ]);
 
         if ($validator->fails()) {
             return response()->json([
-                'message'=>'Erro nas indormações do usuário',
+                'message'=>'Erro nas informações do usuário',
                 'status'=>404,
                 'errors'=>$validator->errors()
             ],404);
@@ -66,8 +68,10 @@ class UsuarioController extends Controller
 
         $data = User::create([
             'name'=>$request->name,
+            'username'=>$request->username,
             'email'=>$request->email,
             'bios'=>$request->bios,
+            'birth_date'=>$request->birth_date,
             'password'=>Hash::make($request->password)
         ]);
 
@@ -100,7 +104,11 @@ class UsuarioController extends Controller
     {
         $validator = Validator::make($request->all(),[
             'name'=>'required|string|max:255',
-            'email'=>'required|email|string|max:255|unique:users,email'
+            'username'=>'sometimes|required|string|max:255|unique:users,username',
+            'email'=>'required|email|string|max:255|unique:users,email',
+            'birth_date'=>'sometimes|nullable|date',
+            'password'=>'sometimes|required|string|min:6',
+            'bios'=>'sometimes|nullable|string|max:255'
         ]);
         
         if ($validator->fails()) {
@@ -123,6 +131,9 @@ class UsuarioController extends Controller
 
         $data->name = $request->name ?? $data->name;
         $data->email = $request->email ?? $data->email;
+        $data->username = $username ?? $data->username;
+        $data->birth_date = $request->birth_date ?? $data->birth_date;
+        $data->bios = $request->bios ?? $data->bios;
 
         if ($request->has('password')) {
             $data->password = Hash::make($request->password);
