@@ -6,10 +6,13 @@ function UserFormUpdate() {
 
   const navigate = useNavigate();
   const [user, setUser] = useState({
-    id: null,
-    name: '',
-    email: ''
-  })
+          id: null,
+          name: '',
+          username: '',
+          birth_date: new Date().toISOString().split('T')[0],
+          email: '',
+          bios: '',
+      });
   const { id } = useParams();
   
   if (id){

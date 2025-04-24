@@ -1,12 +1,13 @@
-
 * {
   box-sizing: border-box;
   margin: 0;
 }
 
-html, body {
+html,
+body {
   min-height: 100vh;
 }
+
 body {
   font-family: 'Arial', Helvetic, sans-serif;
   margin: 0;
@@ -15,11 +16,22 @@ body {
   color: #0B2545;
   background-color: #EEF4ED;
 }
-h1, h2, h3, h4, h5, h6, p {
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
   margin: 0;
 }
 
-.btn, .btn-add, .btn-edit, .btn-delete, .btn-show {
+.btn,
+.btn-add,
+.btn-edit,
+.btn-delete,
+.btn-show {
   outline: 0;
   border: 0;
   display: inline-block;
@@ -30,7 +42,8 @@ h1, h2, h3, h4, h5, h6, p {
   background-color: #134074;
   transition: background-color 0.3s ease;
   font-size: 18px;
-  cursor: pointer;;
+  cursor: pointer;
+  ;
 }
 
 /* 
@@ -38,10 +51,13 @@ h1, h2, h3, h4, h5, h6, p {
   1em == 16px
 */
 
-.btn-block{
+.btn-block {}
 
-}
-.btn-add, .btn-edit, .btn-delete, .btn-show, .btn-cancel{
+.btn-add,
+.btn-edit,
+.btn-delete,
+.btn-show,
+.btn-cancel {
   padding: 0.5rem 0.75rem;
   font-size: 14px;
   border-radius: 4px;
@@ -51,17 +67,17 @@ h1, h2, h3, h4, h5, h6, p {
   background-color: #4CAF50;
 }
 
-.btn-delete{
+.btn-delete {
   background-color: #f44336;
 }
 
-.btn-show{
+.btn-show {
   background-color: #8DA9C4;
 }
 
-.btn-cancel{
+.btn-cancel {
   background-color: #36e4f4;
-  color:#fff
+  color: #fff
 }
 
 /* estilo para tabela */
@@ -71,7 +87,8 @@ table {
   border-collapse: collapse;
 }
 
-th, td {
+th,
+td {
   padding: 10px 1rem;
   text-align: left;
   border-bottom: 1px solid #ddd;
@@ -80,11 +97,11 @@ th, td {
   border-left: 1px solid #ddd;
 }
 
-th{
+th {
   text-align: center;
 }
 
-tbody tr:hover{
+tbody tr:hover {
   background-color: #D9DFD8;
   border-bottom: 1px solid #ddd;
   border-right: 1px solid #ddd;
@@ -92,38 +109,39 @@ tbody tr:hover{
   border-left: 1px solid #ddd;
 }
 
-table > thead > tr > th{
+table>thead>tr>th {
   text-align: left;
   padding: 0.5rem 0.5rem;
   background-color: #13315C;
   color: #EEF4ED;
 }
 
-table > thead > th > td.center{
+table>thead>th>td.center {
   padding: 0.5rem 0.5rem;
   border-bottom: 1px solid #efefef;
   text-align: center;
   vertical-align: middle;
 }
 
-table > thead > th > td.center{
+table>thead>th>td.center {
   padding: 0.5rem 0.5rem;
   border-bottom: 1px solid #efefef;
   text-align: center;
   vertical-align: middle;
 }
 
-th.actions, td.actions {
+th.actions,
+td.actions {
   width: 1%;
   white-space: nowrap;
   text-align: center;
-  min-height: 100vh;;
+  min-height: 100vh;
 }
 
 .display {
   display: flex;
   justify-content: center;
-  padding: 20px;;
+  padding: 20px;
 }
 
 .card {
@@ -132,8 +150,12 @@ th.actions, td.actions {
   min-height: 30%;
   background-color: #fff;
   border-radius: 0.5rem;
-  box-shadow: 0.5px 0.5px 2px rgba(0,0,0);
+  box-shadow: 0.5px 0.5px 2px rgba(0, 0, 0);
   padding: 1.25rem 1.5rem;
   margin-bottom: 1rem;
-  margin-top: 0.5rem;;
+  margin-top: 0.5rem;
+}
+
+.info {
+  text-align: left;
 }

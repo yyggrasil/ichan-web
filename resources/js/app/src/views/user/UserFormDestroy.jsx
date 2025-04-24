@@ -42,8 +42,8 @@ function UserFormDestroy() {
     <Fragment>
       <div className='display'>
         <div className='card animated fadeInDown'>
-          {user.id && <h1>Exclusão de usuário: {user.name}  </h1>}
-          {user.id && <h2>Nome de Usuário: {user.username}  </h2>}
+          {user.id && <h1>Exclusão do usuário: {user.username}  </h1>}
+          {user.id && <h2>Nome de Usuário: {user.name}  </h2>}
           {user.id && <h2>Email: {user.email}  </h2>}
         </div>
 
