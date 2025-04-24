@@ -8,6 +8,7 @@ function UserFormDestroy() {
   const [user, setUser] = useState({
     id: null,
     name: '',
+    username: '',
     email: ''
   })
   const { id } = useParams();
@@ -42,11 +43,11 @@ function UserFormDestroy() {
       <div className='display'>
         <div className='card animated fadeInDown'>
           {user.id && <h1>Exclusão de usuário: {user.name}  </h1>}
+          {user.id && <h2>Nome de Usuário: {user.username}  </h2>}
+          {user.id && <h2>Email: {user.email}  </h2>}
         </div>
 
         <form onSubmit={(e)=>OnSubmit(e)}>
-          <input defaultValue={user.name} placeholder='Nome do Usuário' readOnly={true}/>
-          <input defaultValue={user.email} placeholder='E-mail de Usuário' readOnly={true}/>
           <button 
             className='btn btn-delete'>
               Excluir
