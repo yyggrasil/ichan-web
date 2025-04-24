@@ -46,12 +46,33 @@ function UserFormStore()
                         <input
                             type="text"
                             value={user.name}
-                            placeholder="Nome do Usuário"
+                            placeholder="Nome Completo"
                             onChange={
                                 e => setUser({
                                     ...user, name:e.target.value
                                 })
-                            } />
+                            } 
+                        />
+                        <input
+                            type="text"
+                            value={user.username}
+                            placeholder="Nome de Usuário*"
+                            onChange={
+                                e => setUser({
+                                    ...user, username:e.target.value
+                                })
+                            }
+                        />
+                        <input
+                            type='text'
+                            value={user.birth_date}
+                            placeholder="Data de Nascimento"
+                            onChange={
+                                e => setUser({
+                                    ...user, birth_date:e.target.value
+                                })
+                            }
+                        />
                         <input
                             value={user.email}
                             placeholder="Email"
@@ -59,7 +80,8 @@ function UserFormStore()
                                 e => setUser({
                                     ...user, email:e.target.value
                                 })
-                            } />
+                            } 
+                        />
                         <input
                             type="password"
                             value={user.password}
@@ -68,7 +90,20 @@ function UserFormStore()
                                 e => setUser({
                                     ...user, password:e.target.value
                                 })
-                            } />
+                            } 
+                        />
+                        <input 
+                            type="text"
+                            value={user.bios}
+                            placeholder="Bios"
+                            onChange={
+                                e => setUser({
+                                    ...user, password:e.target.value
+                                })
+                            }
+                        />
+                        <br />
+                        <br />
                         <button className="btn btn-edit">Salvar</button>
                         <Link
                             type='button' 
