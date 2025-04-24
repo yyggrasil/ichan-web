@@ -23,14 +23,13 @@ function UserFormUpdate() {
         }).catch((error) => {
           console.log(error);
         })
-    }, [id]);
+    }, [user.id]);
   }
 
     const OnSubmit = (e) => {
       e.preventDefault();
-      axiosClient.put(`/user/update/${id}`)
+      axiosClient.put(`/user/update/${id}`, user)
         .then((data) => {
-          setUser(data.data);
           navigate('/user/index');
         }).catch((error) => {
           console.log(error);
@@ -48,18 +47,42 @@ function UserFormUpdate() {
         </div>
 
         <form onSubmit={(e)=>OnSubmit(e)}>
+
           <input 
             defaultValue={user.name} 
             placeholder='Nome do Usuário'
             onChange={
               e => setUser({ ...user, name: e.target.value })
             } />
+
           <input 
             defaultValue={user.email} 
             placeholder='E-mail de Usuário'
             onChange={
               e => setUser({ ...user, email: e.target.value })
             } />
+
+          <input
+            defaultValue={user.username} 
+            placeholder='Username'
+            onChange={
+              e => setUser({ ...user, username: e.target.value })
+            } />
+
+          <input
+            type='date'
+            defaultValue={user.birth_date} 
+            placeholder='Data de Nascimento'
+            onChange={
+              e => setUser({ ...user, birth_date: e.target.value })
+            } />
+          <input
+            defaultValue={user.bios} 
+            placeholder='Bios'
+            onChange={
+              e => setUser({ ...user, bios: e.target.value })
+            } />
+
           <button 
             className='btn btn-edit'>
               Salvar

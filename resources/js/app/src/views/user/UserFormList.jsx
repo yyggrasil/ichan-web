@@ -27,7 +27,7 @@ function UserFormList() {
         
         <div style={{
           display: 'flex',
-          justifyContent: 'justify-content',
+          justifyContent: 'space-between',
           alignItems: 'center', 
         }}>
 

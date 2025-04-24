@@ -104,8 +104,8 @@ class UsuarioController extends Controller
     {
         $validator = Validator::make($request->all(),[
             'name'=>'required|string|max:255',
-            'username'=>'sometimes|required|string|max:255|unique:users,username',
-            'email'=>'required|email|string|max:255|unique:users,email',
+            'username'=>'sometimes|required|string|max:255|unique:users,username,' . $id,
+            'email'=>'required|email|string|max:255|unique:users,email,' . $id,
             'birth_date'=>'sometimes|nullable|date',
             'password'=>'sometimes|required|string|min:6',
             'bios'=>'sometimes|nullable|string|max:255'
@@ -131,7 +131,7 @@ class UsuarioController extends Controller
 
         $data->name = $request->name ?? $data->name;
         $data->email = $request->email ?? $data->email;
-        $data->username = $username ?? $data->username;
+        $data->username = $request->username ?? $data->username;
         $data->birth_date = $request->birth_date ?? $data->birth_date;
         $data->bios = $request->bios ?? $data->bios;
 
