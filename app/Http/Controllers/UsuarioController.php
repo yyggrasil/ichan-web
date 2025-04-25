@@ -103,9 +103,9 @@ class UsuarioController extends Controller
     public function update(Request $request, $id)
     {
         $validator = Validator::make($request->all(),[
-            'name'=>'required|string|max:255',
+            'name'=>'sometimes|required|string|max:255',
             'username'=>'sometimes|required|string|max:255|unique:users,username,' . $id,
-            'email'=>'required|email|string|max:255|unique:users,email,' . $id,
+            'email'=>'sometimes|required|email|string|max:255|unique:users,email,' . $id,
             'birth_date'=>'sometimes|nullable|date',
             'password'=>'sometimes|required|string|min:6',
             'bios'=>'sometimes|nullable|string|max:255'
