@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Comunidade extends Model
+class Follow extends Model
 {
     use HasFactory, SoftDeletes;
 
@@ -14,6 +14,11 @@ class Comunidade extends Model
     {
         return $this->hasMany(User::class);
     }
+    public function comunidades()
+    {
+        return $this->hasMany(Comunidade::class);
+    }
+
     /**
      * The attributes that are mass assignable.
      *

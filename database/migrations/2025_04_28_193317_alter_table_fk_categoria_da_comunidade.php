@@ -11,12 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('posts', function (Blueprint $table) {
-            $table->id();
-            $table->string('titulo')->required();
-            $table->string('texto')->nullable();
-            $table->bigInteger('curtidas')->default(0)->unsigned();
-            $table->timestamps();
+        Schema::table('categorias_da_comunidades', function (Blueprint $table) {
+            $table->foreignId('comunidade_id')
+                ->contrained('comunidades')
+                ->onDelete('cascade');
+            $table->foreignId('categoria_id')
+                ->contrained('categorias')
+                ->onDelete('cascade');
         });
     }
 
@@ -25,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('posts');
+        //
     }
 };

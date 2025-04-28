@@ -11,9 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('segues', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+        Schema::table('posts', function (Blueprint $table) {
+            $table->foreignId('comunidade_id')
+                ->contrained('comunidades')
+                ->onDelete('cascade');
+            
+            $table->foreignId('usuario_id')
+                ->contrained('users')
+                ->onDelete('cascade');
         });
     }
 
@@ -22,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('segues');
+        //
     }
 };

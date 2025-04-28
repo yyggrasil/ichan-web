@@ -11,12 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('posts', function (Blueprint $table) {
+        Schema::create('follows', function (Blueprint $table) {
             $table->id();
-            $table->string('titulo')->required();
-            $table->string('texto')->nullable();
-            $table->bigInteger('curtidas')->default(0)->unsigned();
+            $table->boolean('isModerators')->default(false);
             $table->timestamps();
+            $table->softdeletes();
         });
     }
 
@@ -25,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('posts');
+        Schema::dropIfExists('follows');
     }
 };

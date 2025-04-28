@@ -21,7 +21,7 @@ class ComunidadeController extends Controller
         $props = $request->get('props', 'id');
         $search = $request->get('search', '');
         
-        $query = Comunidade::select('id', 'name','description')
+        $query = Comunidade::select('*')
             ->whereNull("deleted_at")
             ->OrderBy($props, $dir);
 
@@ -60,12 +60,12 @@ class ComunidadeController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(),[
-            'name'=>'required|string|max:255',
+            'name'=>'required|string|max:255|unique:comunidades,name',
             'description'=>'nullable|string|max:255',
         ]);
         if ($validator->fails()) {
             return response()->json([
-                'message'=>'Erro nas indormações da comunidade',
+                'message'=>'Erro nas informações da comunidade',
                 'status'=>404,
                 'errors'=>$validator->errors()
             ],404);
@@ -114,7 +114,7 @@ class ComunidadeController extends Controller
     public function update(Request $request, string $id)
     {
         $validator = Validator::make($request->all(),[
-            'name'=>'sometimes|required|string|max:255',
+            'name'=>'sometimes|required|string|max:255|unique:comunidades,name,'.$id,
             'description'=>'nullable|string|max:255',
         ]);
         if ($validator->fails()) {

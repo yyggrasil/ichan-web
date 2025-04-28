@@ -5,9 +5,10 @@ import { data, Link } from 'react-router-dom';
 function UserFormList() {
 
   const [users, setUsers] = React.useState([]);
+  const {page, pageSize} = userParams();
 
   const getUsers = () => {
-    axiosClient.get('/user/index')
+    axiosClient.get(`/user/index?page{}`)
               .then(({data}) => {
                 setUsers(data.data);
               }
@@ -86,6 +87,8 @@ function UserFormList() {
                 </tr>
               )
             }
+
+            <button type="button"></button>
           </tbody>
         </table>
       </div>
