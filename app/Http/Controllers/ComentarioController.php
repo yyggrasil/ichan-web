@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Http\RedirectResponse;
+use App\Http\Requests\StoreComentarioRequest;
+use App\Http\Requests\UpdateComentarioRequest;
 
 class ComentarioController extends Controller
 {
@@ -25,7 +28,7 @@ class ComentarioController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreComentarioRequest $request): RedirectResponse
     {
         //
     }
@@ -49,7 +52,7 @@ class ComentarioController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UpdateComentarioRequest $request, string $id)
     {
         //
     }

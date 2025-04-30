@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Symfony\Component\HttpKernel\Exception\HttpResponseException;
 use App\Models\Comunidade;
+use App\Http\Requests\StoreComunidadeRequest;
+use App\Http\Requests\UpdateComunidadeRequest;
+use Illuminate\Http\RedirectResponse;
 
 class ComunidadeController extends Controller
 {
@@ -57,15 +60,14 @@ class ComunidadeController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreComunidadeRequest $request): RedirectResponse
     {
-        $validator = Validator::make($request->all(),[
-            'name'=>'required|string|max:255|unique:comunidades,name',
-            'description'=>'nullable|string|max:255',
-        ]);
+        $validator = $request->validated();
+
         if ($validator->fails()) {
+
             return response()->json([
-                'message'=>'Erro nas informações da comunidade',
+                'message'=>"Erro nas informações da comunidade",
                 'status'=>404,
                 'errors'=>$validator->errors()
             ],404);
@@ -84,20 +86,20 @@ class ComunidadeController extends Controller
      */
     public function show(Request $request, string $id)
     {
-        try{
-            $data = Comunidade::findOrFail($id);
-            return response()->json([
-                'message'=>'Comunidade encontrada',
-                'status'=>200,
-                'data'=>$data
-            ],200);
-        } catch(HttpResponseException $e){
+        $data = Comunidade::find($id);
+        if (!$data) {
             return response()->json([
                 'message'=>'Comunidade não encontrada',
                 'status'=>404,
-                'data'=>$e
+                'data'=>$id
             ],404);
         }
+
+        return response()->json([
+            'message'=>'Comunidade encontrada',
+            'status'=>200,
+            'data'=>$data
+        ],200);
     }
 
     /**
