@@ -3,17 +3,25 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\CategoriaDaComunidade;
 
 class Categoria extends Model
 {
+    use HasFactory, SoftDeletes;
+    public function CategoriaDaComunidade()
+    {
+        return $this->belongsTo(CategoriaDaComunidade::class);
+    }
     /**
      * The attributes that are mass assignable.
      *
      * @var list<string>
      */
     protected $fillable = [
-        'name',
-        'description',
+        'nome',
+        'descricao',
     ];
 
     /**
@@ -22,7 +30,7 @@ class Categoria extends Model
      * @var list<string>
      */
     protected $hidden = [
-        //"created_at",
+        "created_at",
         "updated_at",
         "deleted_at",
     ];

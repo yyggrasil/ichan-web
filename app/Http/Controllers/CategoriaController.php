@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Categoria;
+use Illuminate\Support\Facades\Validator;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class CategoriaController extends Controller
 {
@@ -11,7 +14,38 @@ class CategoriaController extends Controller
      */
     public function index()
     {
-        //
+        $page = $request->get('page', '1');
+        $pageSize = $request->get('pageSize', '5');
+        $dir = $request->get('dir', 'asc');
+        $props = $request->get('props', 'id');
+        $search = $request->get('search', '');
+
+
+        $query = Categoria::select("*")
+            ->whereNull("deleted_at")
+            ->OrderBy($props, $dir);
+
+        $total = $query->count();
+
+        $data = $query->offset( ($page - 1) * $pageSize)
+            ->limit($pageSize)
+            ->get();
+
+        $totalPages = ceil($total / $pageSize);
+
+
+        return response()->json([
+            'message'=>'Relatorio de categorias',
+            'status'=>200,
+            'page'=>$page,
+            'pageSize'=>$pageSize,
+            'dir'=>$dir,
+            'props'=>$props,
+            'search'=>$search,
+            'total'=>$total,
+            'totalPages'=>$totalPages,
+            'data'=>$data
+        ],200);
     }
 
     /**

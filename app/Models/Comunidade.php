@@ -10,9 +10,17 @@ class Comunidade extends Model
 {
     use HasFactory, SoftDeletes;
 
-    public function users()
+    public function follows() 
     {
-        return $this->hasMany(User::class);
+        return $this->hasMany(Follow::class);
+    }
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
+    }
+    public function categorias()
+    {
+        return $this->hasMany(CategoriaDaComunidade::class);
     }
     /**
      * The attributes that are mass assignable.
@@ -20,8 +28,8 @@ class Comunidade extends Model
      * @var list<string>
      */
     protected $fillable = [
-        'name',
-        'description',
+        'nome',
+        'descricao',
     ];
 
     /**

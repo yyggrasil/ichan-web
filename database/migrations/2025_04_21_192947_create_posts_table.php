@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('texto')->nullable();
             $table->bigInteger('curtidas')->default(0)->unsigned();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

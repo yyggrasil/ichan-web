@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('follows', function (Blueprint $table) {
             $table->id();
-            $table->boolean('isModerators')->default(false);
+            $table->boolean('isModerator')->default(false);
             $table->timestamps();
             $table->softdeletes();
         });

@@ -13,17 +13,28 @@ class User extends Authenticatable
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable, SoftDeletes;
 
-    public function Comunidade()
+    // Conexão com modelos externos
+    public function Comunidade() 
     {
-        return $this->belongsTo(Comunidade::class);
+        return $this->hasMany(Comunidade::class);
     }
+    public function Comentario()
+    {
+        return $this->hasMany(Comentario::class);
+    }
+    public function Post()
+    {
+        return $this->hasMany(Post::class);
+    }
+
+
     /**
      * The attributes that are mass assignable.
      *
      * @var list<string>
      */
     protected $fillable = [
-        'name',
+        'nome',
         'username',
         'birth_date',
         'email',

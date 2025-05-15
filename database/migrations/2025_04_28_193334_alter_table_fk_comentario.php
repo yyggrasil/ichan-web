@@ -18,11 +18,13 @@ return new class extends Migration
 
             $table->foreignId('usuario_id')
                 ->contrained('users')
-                ->onDelete('cascade');
+                ->onDelete('cascade')
+                ->nullable();
 
             $table->foreignId('comentario_id')
                 ->contrained('comentarios')
-                ->onDelete('cascade');
+                ->onDelete('cascade')
+                ->nullable();
         });
     }
 

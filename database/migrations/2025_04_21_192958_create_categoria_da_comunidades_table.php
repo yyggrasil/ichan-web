@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('categorias_da_comunidades', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -22,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('categoria_da_comunidades');
+        Schema::dropIfExists('categorias_da_comunidades');
     }
 };

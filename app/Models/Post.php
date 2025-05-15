@@ -3,17 +3,35 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Post extends Model
 {
+    use HasFactory, SoftDeletes; 
+
+    // Conexão com modelos externos
+    public function Comunidade()
+    {
+        return $this->belongsTo(Comunidade::class);
+    }
+    public function Comentario()
+    {
+        return $this->hasMany(Comentario::class);
+    }
+    public function User()
+    {
+        return $this->belongsTo(User::class);
+    }
     /**
      * The attributes that are mass assignable.
      *
      * @var list<string>
      */
     protected $fillable = [
-        'name',
-        'description',
+        'titulo',
+        'texto',
+        "curtidas"
     ];
 
     /**
@@ -22,7 +40,7 @@ class Post extends Model
      * @var list<string>
      */
     protected $hidden = [
-        //"created_at",
+        "created_at",
         "updated_at",
         "deleted_at",
     ];

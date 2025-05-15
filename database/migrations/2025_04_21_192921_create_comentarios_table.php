@@ -14,7 +14,9 @@ return new class extends Migration
         Schema::create('comentarios', function (Blueprint $table) {
             $table->id();
             $table->string("texto")->required();
+            $table->bigInteger("curtidas")->unsigned()->required()->default(0);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

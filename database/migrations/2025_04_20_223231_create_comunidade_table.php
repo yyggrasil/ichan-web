@@ -13,9 +13,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('comunidades', function (Blueprint $table) {
-            $table->id();
-            $table->string('name', 255)->unique();
-            $table->string('description', 255)->nullable();
+        $table->id();
+        $table->string('nome', 255)->unique();
+        $table->string('descricao', 255)->nullable();
             $table->timestamps();
             $table->softdeletes();
         });

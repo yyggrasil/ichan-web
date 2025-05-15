@@ -24,7 +24,7 @@ class UserFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => fake()->name(),
+            'nome' => fake()->name(),
             'username' => fake()->unique()->userName(),
             'email' => fake()->unique()->safeEmail(),
             'bios' => fake()->text(200),
@@ -32,6 +32,14 @@ class UserFactory extends Factory
             'email_verified_at' => now(),
             'password' => static::$password ??= Hash::make('password'),
             'remember_token' => Str::random(10),
+        ];
+        return [
+            'name' => $this->faker->name,
+            'username' => $this->faker->unique()->userName,
+            'birth_date' => $this->faker->date(),
+            'email' => $this->faker->unique()->safeEmail,
+            'password' => bcrypt('password'),
+            'bios' => $this->faker->sentence,
         ];
     }
 

@@ -3,11 +3,26 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class CategoriaDaComunidade extends Model
-{
-    
+{ 
+    use HasFactory, SoftDeletes;
     protected $table = 'categorias_da_comunidades';
+    
+    /**
+     * Get the comunidades for this categoria.
+     */
+    public function comunidades()
+    {
+        return $this->BelongsTo(Comunidade::class, 'categoria_id');
+    }
+    public function categorias()
+    {
+        return $this->BelongsTo(Categoria::class, 'categoria_id');
+    }
+    
 
     /**
      * The attributes that are mass assignable.
@@ -15,8 +30,6 @@ class CategoriaDaComunidade extends Model
      * @var list<string>
      */
     protected $fillable = [
-        'name',
-        'description',
     ];
 
     /**

@@ -5,9 +5,9 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Comunidade>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\CategoriaDaComunidade>
  */
-class ComunidadeFactory extends Factory
+class CategoriaDaComunidadeFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -17,11 +17,10 @@ class ComunidadeFactory extends Factory
     public function definition(): array
     {
         return [
-            'nome' => $this->faker->name(),
-            'descricao' => $this->faker->text(200),
+            'comunidade_id' => $this->faker->numberBetween(1, 10),
+            'categoria_id' => $this->faker->numberBetween(1, 10),
             'created_at' => now(),
             'updated_at' => now(),
-            'deleted_at' => null,
         ];
     }
 }

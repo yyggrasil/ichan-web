@@ -10,7 +10,7 @@ class Follow extends Model
 {
     use HasFactory, SoftDeletes;
 
-    public function users()
+    public function users() 
     {
         return $this->hasMany(User::class);
     }
@@ -25,8 +25,7 @@ class Follow extends Model
      * @var list<string>
      */
     protected $fillable = [
-        'name',
-        'description',
+        'isModerator',
     ];
 
     /**
