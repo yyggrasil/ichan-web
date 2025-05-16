@@ -11,7 +11,7 @@ class UpdateCategoriaDaComunidadeRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,15 @@ class UpdateCategoriaDaComunidadeRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'comunidade_id' => 'exists:comunidades,id',
+            'categoria_id' => 'exists:categorias,id'
+        ];
+    }
+    public function messages()
+    {
+        return [
+            'comunidade_id.exists' => 'A comunidade não existe.',
+            'categoria_id.exists' => 'A categoria não existe.'
         ];
     }
 }

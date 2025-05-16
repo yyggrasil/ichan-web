@@ -11,7 +11,7 @@ class UpdatePostRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,23 @@ class UpdatePostRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'titulo' => 'string|max:255',
+            'texto' => 'string|max:1000',
+            'curtidas' => 'bigint',
+            'comunidade_id' => 'exists:comunidades,id',
+            'categoria_id' => 'exists:categorias,id'
+        ];
+    }
+    public function messages()
+    {
+        return [
+            'titulo.string' => 'O campo título deve ser uma string.',
+            'titulo.max' => 'O campo título não pode ter mais de 255 caracteres.',
+            'texto.string' => 'O campo texto deve ser uma string.',
+            'texto.max' => 'O campo texto não pode ter mais de 1000 caracteres.',
+            'curtidas.bigint' => 'O campo curtidas deve ser um número inteiro.',
+            'comunidade_id.exists' => 'A comunidade não existe.',
+            'categoria_id.exists' => 'A categoria não existe.'
         ];
     }
 }

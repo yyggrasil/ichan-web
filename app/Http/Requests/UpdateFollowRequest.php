@@ -11,7 +11,7 @@ class UpdateFollowRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,17 @@ class UpdateFollowRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'isModerator' => 'boolean',
+            'user_id' => 'exists:users,id',
+            'comunidade_id' => 'exists:comunidades,id'
+        ];
+    }
+    public function messages()
+    {
+        return [
+            'isModerator.boolean' => 'O campo isModerator deve ser verdadeiro ou falso.',
+            'user_id.exists' => 'O usuário não existe.',
+            'comunidade_id.exists' => 'A comunidade não existe.'
         ];
     }
 }

@@ -11,7 +11,7 @@ class StoreCategoriaDaComunidadeRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,19 @@ class StoreCategoriaDaComunidadeRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'categoria_id' => 'required|integer|exists:categorias,id',
+            'comunidade_id' => 'required|integer|exists:comunidades,id',
+        ];
+    }
+    public function messages()
+    {
+        return [
+            'categoria_id.required' => 'O campo categoria_id é obrigatório.',
+            'categoria_id.integer' => 'O campo categoria_id deve ser um número inteiro.',
+            'categoria_id.exists' => 'A categoria informada não existe.',
+            'comunidade_id.required' => 'O campo comunidade_id é obrigatório.',
+            'comunidade_id.integer' => 'O campo comunidade_id deve ser um número inteiro.',
+            'comunidade_id.exists' => 'A comunidade informada não existe.',
         ];
     }
 }
