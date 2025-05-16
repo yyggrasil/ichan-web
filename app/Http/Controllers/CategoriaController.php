@@ -6,13 +6,16 @@ use Illuminate\Http\Request;
 use App\Models\Categoria;
 use Illuminate\Support\Facades\Validator;
 use Symfony\Component\HttpKernel\Exception\HttpException;
+use App\Http\Requests\StoreCategoriaRequest;
+use App\Http\Requests\UpdateCategoriaRequest;
+use Illuminate\Http\RedirectResponse;
 
 class CategoriaController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         $page = $request->get('page', '1');
         $pageSize = $request->get('pageSize', '5');
@@ -35,7 +38,7 @@ class CategoriaController extends Controller
 
 
         return response()->json([
-            'message'=>'Relatorio de categorias',
+            'message'=>'Relatório de categorias',
             'status'=>200,
             'page'=>$page,
             'pageSize'=>$pageSize,
@@ -62,7 +65,7 @@ class CategoriaController extends Controller
     public function store(StoreCategoriaRequest $request) : RedirectResponse
     {
         $validator = $request->validated();
-        
+
         if ($validator->fails()) {
             return response()->json([
                 'message'=>'Erro nas informações do usuário',
@@ -71,17 +74,13 @@ class CategoriaController extends Controller
             ],404);
         }
 
-        $data = User::create([
-            'name'=>$request->name,
-            'username'=>$request->username,
-            'email'=>$request->email,
-            'bios'=>$request->bios,
-            'birth_date'=>$request->birth_date,
-            'password'=>Hash::make($request->password)
+        $data = Categoria::create([
+            'nome'=>$request->name,
+            'descricao'=>$request->username
         ]);
 
         return response()->json([
-            'message'=>'Usuário cadastrado com sucesso',
+            'message'=>'Categoria cadastrado com sucesso',
             'status'=>200,
             'data'=>$data
         ],200);
@@ -90,9 +89,22 @@ class CategoriaController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Request $request, string $id)
     {
-        //
+        try{
+            $data = Categoria::findOrfail($id);
+        } catch (HttpResponseException $e) {
+            response()->json([
+                'message'=>'Categoria não encontrada',
+                'status'=>404
+            ],404);
+        }
+
+        return response()->json([
+            'message'=>'Categoria encontrada com sucesso',
+            'status'=>200,
+            'data'=>$data
+        ],200);
     }
 
     /**
@@ -106,16 +118,55 @@ class CategoriaController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UpdateCategoriaRequest $request, string $id) : RedirectResponse
     {
-        //
+        $validator = $request->validated();
+
+        if ($validator->fails()) {
+            return response()->json([
+                'message'=>'Erro nas informações da categoria',
+                'status'=>404,
+                'errors'=>$validator->errors()
+            ],404);
+        }
+
+        $data = Categoria::find($id);
+
+        if (!$data) {
+            return response()->json([
+                'message'=>'Categoria não encontrado',
+                'status'=>404
+            ],404);
+        }
+
+        $data->update($request->all());
+
+        return response()->json([
+            'message'=>'Categoria atualizado com sucesso',
+            'status'=>200,
+            'data'=>$data
+        ],200);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Request $request, string $id)
     {
-        //
+        $data = Categoria::find($id);
+
+        if (!$data) {
+            return response()->json([
+                'message'=>'Categoria não encontrado',
+                'status'=>404
+            ],404);
+        }
+
+        $data->delete();
+
+        return response()->json([
+            'message'=>'Categoria deletado com sucesso',
+            'status'=>200
+        ],200);
     }
 }
