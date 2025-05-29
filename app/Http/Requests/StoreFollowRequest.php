@@ -22,7 +22,7 @@ class StoreFollowRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'isModerator' => 'required|boolean',
+            'isModerator' => 'required|boolean|default:false',
             'user_id' => 'required|exists:users,id',
             'comunidade_id' => 'required|exists:comunidades,id'
         ];

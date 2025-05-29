@@ -62,17 +62,9 @@ class CategoriaController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreCategoriaRequest $request) : RedirectResponse
+    public function store(StoreCategoriaRequest $request)
     {
         $validator = $request->validated();
-
-        if ($validator->fails()) {
-            return response()->json([
-                'message'=>'Erro nas informações do usuário',
-                'status'=>404,
-                'errors'=>$validator->errors()
-            ],404);
-        }
 
         $data = Categoria::create([
             'nome'=>$request->name,

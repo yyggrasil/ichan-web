@@ -36,7 +36,7 @@ class CategoriaDaComunidadeController extends Controller
         $totalPages = ceil($total / $pageSize);
 
         return response()->json([
-            'message' => 'Relatório de categorias',
+            'message' => 'Relatório de da conexao entre categoria e comunidade',
             'status' => 200,
             'page' => $page,
             'pageSize' => $pageSize,
@@ -60,17 +60,9 @@ class CategoriaDaComunidadeController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreCategoriaDaComunidadeRequest $request) : RedirectResponse
+    public function store(StoreCategoriaDaComunidadeRequest $request) 
     {
         $validator = $request->validated();
-
-        if ($validator->fails()) {
-            return response()->json([
-                'message' => 'Erro nas informações na conexão da categoria com a comunidade',
-                'status' => 404,
-                'errors' => $validator->errors()
-            ], 404);
-        }
 
         $data = CategoriaDaComunidade::create([
             'categoria_id' => $request->categoria_id,
