@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import axiosClient from '../../axiosClient';
 import { data, Link } from 'react-router-dom';
 
-function UserFormList() {
+function ComentarioFormList() {
 
   const [users, setUsers] = React.useState([]);
   //const {page, pageSize} = userParams();
@@ -32,7 +32,7 @@ function UserFormList() {
           alignItems: 'center', 
         }}>
 
-          <h1>Lista de usuários</h1>
+          <h1>Lista de Usuários</h1>
           <Link to="/user/store" className='btn-add'>Store</Link>
         </div>
         <table>
@@ -44,6 +44,7 @@ function UserFormList() {
               <th>Username</th>
               <th>Email</th>
               <th>Data de Nascimento</th>
+              <th>Bios</th>
               <th className='center actions' colSpan={3}>Ações</th>
             </tr>
           </thead>
@@ -56,13 +57,15 @@ function UserFormList() {
 
                     <td>{user.id}</td>
 
-                    <td>{user.nome}</td>
+                    <td>{user.name}</td>
 
                     <td>{user.username}</td>
 
                     <td>{user.email}</td>
 
                     <td>{user.birth_date}</td>
+
+                    <td>{user.bios}</td>
 
                     <td className='center actions'>
                       <Link to={`/user/update/${user.id}`} className='btn-edit'>Update</Link>
@@ -84,6 +87,8 @@ function UserFormList() {
                 </tr>
               )
             }
+
+            <button type="button"></button>
           </tbody>
         </table>
       </div>
@@ -91,4 +96,4 @@ function UserFormList() {
   )
 }
 
-export default UserFormList
+export default ComentarioFormList

@@ -2,15 +2,15 @@ import React, { useEffect, useState } from 'react'
 import axiosClient from '../../axiosClient';
 import { data, Link } from 'react-router-dom';
 
-function UserFormList() {
+function CategoriaFormList() {
 
-  const [users, setUsers] = React.useState([]);
-  //const {page, pageSize} = userParams();
+  const [categorias, setCategoria] = React.useState([]);
+  const {page, pageSize} = userParams();
 
-  const getUsers = () => {
-    axiosClient.get(`/user/index?page{}`)
+  const getCategoria = () => {
+    axiosClient.get(`/categoria/index?page{}`)
               .then(({data}) => {
-                setUsers(data.data);
+                setCategoria(data.data);
               }
               ).catch((error) => {
                 console.log(error);
@@ -18,7 +18,7 @@ function UserFormList() {
   }
 
   useEffect(() => {
-    getUsers();
+    getCategoria();
   }, []);
 
 
@@ -32,8 +32,8 @@ function UserFormList() {
           alignItems: 'center', 
         }}>
 
-          <h1>Lista de usuários</h1>
-          <Link to="/user/store" className='btn-add'>Store</Link>
+          <h1>Lista de Categoria</h1>
+          <Link to="/categoria/store" className='btn-add'>Store</Link>
         </div>
         <table>
           
@@ -44,36 +44,39 @@ function UserFormList() {
               <th>Username</th>
               <th>Email</th>
               <th>Data de Nascimento</th>
+              <th>Bios</th>
               <th className='center actions' colSpan={3}>Ações</th>
             </tr>
           </thead>
 
           <tbody>
             {
-              users.length > 0 ? (
-                users.map((user, index) => (
+              categorias.length > 0 ? (
+                categorias.map((categoria, index) => (
                   <tr key={index}>
 
-                    <td>{user.id}</td>
+                    <td>{categoria.id}</td>
 
-                    <td>{user.nome}</td>
+                    <td>{categoria.name}</td>
 
-                    <td>{user.username}</td>
+                    <td>{categoria.username}</td>
 
-                    <td>{user.email}</td>
+                    <td>{categoria.email}</td>
 
-                    <td>{user.birth_date}</td>
+                    <td>{categoria.birth_date}</td>
+
+                    <td>{categoria.bios}</td>
 
                     <td className='center actions'>
-                      <Link to={`/user/update/${user.id}`} className='btn-edit'>Update</Link>
+                      <Link to={`/categoria/update/${categoria.id}`} className='btn-edit'>Update</Link>
                     </td>
 
                     <td className='center actions'>
-                      <Link to={`/user/destroy/${user.id}`} className='btn-delete'>Destroy</Link>
+                      <Link to={`/categoria/destroy/${categoria.id}`} className='btn-delete'>Destroy</Link>
                     </td>
                   
                     <td className='center actions'>
-                      <Link to={`/user/show/${user.id}`} className='btn-show'>Show</Link>
+                      <Link to={`/categoria/show/${categoria.id}`} className='btn-show'>Show</Link>
                     </td>
 
                   </tr>
@@ -84,6 +87,8 @@ function UserFormList() {
                 </tr>
               )
             }
+
+            <button type="button"></button>
           </tbody>
         </table>
       </div>
@@ -91,4 +96,4 @@ function UserFormList() {
   )
 }
 
-export default UserFormList
+export default CategoriaFormList

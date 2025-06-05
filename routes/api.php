@@ -54,7 +54,7 @@ Route::prefix('categoria')->group(function () {
     Route::delete('/destroy/{id}', [CategoriaController::class, 'destroy']);
 });
 
-Route::prefix('categoria-da-comunidade')->group(function () {
+Route::prefix('categoriadacomunidade')->group(function () {
     Route::get('/index', [CategoriaDaComunidadeController::class, 'index']);
     Route::get('/show/{id}', [CategoriaDaComunidadeController::class, 'show']);
 
