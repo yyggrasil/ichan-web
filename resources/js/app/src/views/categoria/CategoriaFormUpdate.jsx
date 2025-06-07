@@ -7,11 +7,8 @@ function CategoriaFormUpdate() {
   const navigate = useNavigate();
   const [categoria, setCategoria] = useState({
           id: null,
-          name: '',
-          username: '',
-          birth_date: new Date().toISOString().split('T')[0],
-          email: '',
-          bios: '',
+          nome: '',
+          descricao: ''
       });
   const { id } = useParams();
   
@@ -43,44 +40,23 @@ function CategoriaFormUpdate() {
     <Fragment>
       <div className='display'>
         <div className='card animated fadeInDown'>
-          {categoria.id && <h1>Exclusão de categoria: {categoria.name}  </h1>}
+          {categoria.id && <h1>Exclusão da categoria: {categoria.nome}  </h1>}
         </div>
 
         <form onSubmit={(e)=>OnSubmit(e)}>
 
           <input 
-            defaultValue={categoria.name} 
+            defaultValue={categoria.nome} 
             placeholder='Nome da categoria'
             onChange={
-              e => setCategoria({ ...categoria, name: e.target.value })
+              e => setCategoria({ ...categoria, nome: e.target.value })
             } />
 
           <input 
-            defaultValue={categoria.email} 
-            placeholder='E-mail de Usuário'
+            defaultValue={categoria.descricao} 
+            placeholder='Descrição'
             onChange={
-              e => setCategoria({ ...categoria, email: e.target.value })
-            } />
-
-          <input
-            defaultValue={categoria.username} 
-            placeholder='Username'
-            onChange={
-              e => setCategoria({ ...categoria, username: e.target.value })
-            } />
-
-          <input
-            type='date'
-            defaultValue={categoria.birth_date} 
-            placeholder='Data de Nascimento'
-            onChange={
-              e => setCategoria({ ...categoria, birth_date: e.target.value })
-            } />
-          <input
-            defaultValue={categoria.bios} 
-            placeholder='Bios'
-            onChange={
-              e => setCategoria({ ...categoria, bios: e.target.value })
+              e => setCategoria({ ...categoria, descricao: e.target.value })
             } />
 
           <button 

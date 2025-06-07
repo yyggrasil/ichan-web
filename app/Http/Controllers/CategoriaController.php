@@ -67,8 +67,8 @@ class CategoriaController extends Controller
         $validator = $request->validated();
 
         $data = Categoria::create([
-            'nome'=>$request->name,
-            'descricao'=>$request->username
+            'nome'=>$request->nome,
+            'descricao'=>$request->descricao
         ]);
 
         return response()->json([
@@ -110,17 +110,10 @@ class CategoriaController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateCategoriaRequest $request, string $id) : RedirectResponse
+    public function update(UpdateCategoriaRequest $request, string $id)
     {
         $validator = $request->validated();
 
-        if ($validator->fails()) {
-            return response()->json([
-                'message'=>'Erro nas informações da categoria',
-                'status'=>404,
-                'errors'=>$validator->errors()
-            ],404);
-        }
 
         $data = Categoria::find($id);
 

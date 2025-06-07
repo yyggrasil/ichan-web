@@ -119,14 +119,6 @@ class ComentarioController extends Controller
 
         $validator = $request->validated();
 
-        if ($validator->fails()) {
-            return response()->json([
-                'message'=>'Erro nas informações do comentario',
-                'status'=>404,
-                'errors'=>$validator->errors()
-            ],404);
-        }
-
 
         $data->update($request->all());
 

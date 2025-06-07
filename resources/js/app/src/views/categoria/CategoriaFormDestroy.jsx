@@ -8,8 +8,7 @@ function CategoriaFormDestroy() {
   const [categoria, setCategoria] = useState({
     id: null,
     nome: '',
-    username: '',
-    email: ''
+    descricao: ''
   })
   const { id } = useParams();
   
@@ -42,8 +41,7 @@ function CategoriaFormDestroy() {
     <Fragment>
       <div className='display'>
         <div className='card animated fadeInDown'>
-          {categoria.id && <h1>Exclusão da categoria: {categoria.username}  </h1>}
-          {categoria.id && <h2>Nome da categoria: {categoria.nome}  </h2>}
+          {categoria.id && <h1>Exclusão da categoria: {categoria.nome}  </h1>}
           {categoria.id && <h2>Descrição: {categoria.descricao}  </h2>}
         </div>
 

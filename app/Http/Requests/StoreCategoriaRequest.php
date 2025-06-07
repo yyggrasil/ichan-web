@@ -22,19 +22,19 @@ class StoreCategoriaRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|string|max:255|unique:categorias,name',
-            'description' => 'required|string|max:1000'
+            'nome' => 'required|string|max:255|unique:categorias,name',
+            'descricao' => 'required|string|max:1000'
         ];
     }
     public function messages()
     {
         return [
-            'name.required' => 'O campo nome é obrigatório.',
-            'name.string' => 'O campo nome deve ser uma string.',
-            'name.max' => 'O campo nome não pode ter mais de 255 caracteres.',
-            'description.required' => 'O campo descrição é obrigatório.',
-            'description.string' => 'O campo descrição deve ser uma string.',
-            'description.max' => 'O campo descrição não pode ter mais de 1000 caracteres.'
+            'nome.required' => 'O campo nome é obrigatório.',
+            'nome.string' => 'O campo nome deve ser uma string.',
+            'nome.max' => 'O campo nome não pode ter mais de 255 caracteres.',
+            'descricao.required' => 'O campo descrição é obrigatório.',
+            'descricao.string' => 'O campo descrição deve ser uma string.',
+            'descricao.max' => 'O campo descrição não pode ter mais de 1000 caracteres.'
         ];
     }
 }

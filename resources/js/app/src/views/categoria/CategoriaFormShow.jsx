@@ -29,17 +29,11 @@ function CategoriaFormShow() {
     <Fragment>
       <div className='display'>
         <div className='card animated fadeInDown'>
-          {categoria.id && <h1>Consulta de categoria: {categoria.username}</h1>}
+          {categoria.id && <h1>Consulta de categoria: {categoria.nome}</h1>}
 
           <br />
           <div className='info'>
-            {categoria.id && <h2>Id da categoria: {categoria.id}</h2>}
-            {categoria.id && <h2>Nome Completo: {categoria.name}</h2>}
-            {categoria.id && <h2>Nome de Usuário: {categoria.username}</h2>}
-            {categoria.id && <h2>Email: {categoria.email}</h2>}
-            {categoria.id && <h2>Data de Nascimento: {categoria.birth_date}</h2>}
-
-            {categoria.id && <h2>Bios: {categoria.bios}</h2>}
+            {categoria.id && <h2>Descrição: {categoria.descricao}</h2>}
           </div>
 
           <button

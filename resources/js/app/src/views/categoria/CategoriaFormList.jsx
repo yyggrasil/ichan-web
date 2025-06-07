@@ -5,10 +5,10 @@ import { data, Link } from 'react-router-dom';
 function CategoriaFormList() {
 
   const [categorias, setCategoria] = React.useState([]);
-  const {page, pageSize} = userParams();
+  //const {page, pageSize} = userParams();
 
   const getCategoria = () => {
-    axiosClient.get(`/categoria/index?page{}`)
+    axiosClient.get(`/categoria/index?page=1&pageSize=10`)
               .then(({data}) => {
                 setCategoria(data.data);
               }
@@ -41,10 +41,7 @@ function CategoriaFormList() {
             <tr>
               <th>ID</th>
               <th>Nome</th>
-              <th>Username</th>
-              <th>Email</th>
-              <th>Data de Nascimento</th>
-              <th>Bios</th>
+              <th>Descrição</th>
               <th className='center actions' colSpan={3}>Ações</th>
             </tr>
           </thead>
@@ -57,15 +54,9 @@ function CategoriaFormList() {
 
                     <td>{categoria.id}</td>
 
-                    <td>{categoria.name}</td>
+                    <td>{categoria.nome}</td>
 
-                    <td>{categoria.username}</td>
-
-                    <td>{categoria.email}</td>
-
-                    <td>{categoria.birth_date}</td>
-
-                    <td>{categoria.bios}</td>
+                    <td>{categoria.descricao}</td>
 
                     <td className='center actions'>
                       <Link to={`/categoria/update/${categoria.id}`} className='btn-edit'>Update</Link>
@@ -87,9 +78,8 @@ function CategoriaFormList() {
                 </tr>
               )
             }
-
-            <button type="button"></button>
           </tbody>
+          
         </table>
       </div>
     </div>

@@ -7,12 +7,8 @@ function CategoriaFormStore() {
 
     const [categoria, setCategoria] = useState({
         id: null,
-        name: '',
-        username: '',
-        birth_date: new Date().toISOString().split('T')[0],
-        email: '',
-        password: '',
-        bios: '',
+        nome: '',
+        descricao: ''
     });
 
     // Função do tipo Anônima
@@ -29,7 +25,7 @@ function CategoriaFormStore() {
     }
 
     const onCancel = (e) => {
-        navigate('/user/index');
+        navigate('/categoria/index');
     }
 
 
@@ -43,63 +39,25 @@ function CategoriaFormStore() {
                     <form onSubmit={(e) => onSubmit(e)}>
                         <input
                             type="text"
-                            value={categoria.name}
-                            placeholder="Nome Completo"
+                            value={categoria.nome}
+                            placeholder="Nome da Categoria*"
                             onChange={
                                 e => setCategoria({
-                                    ...categoria, name: e.target.value
+                                    ...categoria, nome: e.target.value
                                 })
                             }
                         />
                         <input
                             type="text"
-                            value={categoria.username}
-                            placeholder="Nome de Usuário*"
+                            value={categoria.descricao}
+                            placeholder="Descrição da Categoria*"
                             onChange={
                                 e => setCategoria({
-                                    ...categoria, username: e.target.value
+                                    ...categoria, descricao: e.target.value
                                 })
                             }
                         />
-                        <input
-                            type='date'
-                            value={categoria.birth_date}
-                            placeholder="Data de Nascimento"
-                            onChange={
-                                e => setCategoria({
-                                    ...categoria, birth_date: e.target.value
-                                })
-                            }
-                        />
-                        <input
-                            value={categoria.email}
-                            placeholder="Email"
-                            onChange={
-                                e => setCategoria({
-                                    ...categoria, email: e.target.value
-                                })
-                            }
-                        />
-                        <input
-                            type="password"
-                            value={categoria.password}
-                            placeholder="Senha"
-                            onChange={
-                                e => setCategoria({
-                                    ...categoria, password: e.target.value
-                                })
-                            }
-                        />
-                        <input
-                            type="text"
-                            value={categoria.bios}
-                            placeholder="Bios"
-                            onChange={
-                                e => setCategoria({
-                                    ...categoria, bios: e.target.value
-                                })
-                            }
-                        />
+                        
                         <br />
                         <br />
                         <button
@@ -109,7 +67,7 @@ function CategoriaFormStore() {
                         <Link
                             type='button'
                             className='btn btn-cancel'
-                            to='/user/index'>
+                            to='/categoria/index'>
                             Cancelar
                         </Link>
                     </form>
