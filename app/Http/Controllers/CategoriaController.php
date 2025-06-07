@@ -66,11 +66,8 @@ class CategoriaController extends Controller
     {
         $validator = $request->validated();
 
-        $data = Categoria::create([
-            'nome'=>$request->nome,
-            'descricao'=>$request->descricao
-        ]);
-
+        $data = Categoria::create($request->all());
+        
         return response()->json([
             'message'=>'Categoria cadastrado com sucesso',
             'status'=>200,

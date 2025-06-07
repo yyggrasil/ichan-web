@@ -6,7 +6,6 @@ function CategoriaFormStore() {
     const navigate = useNavigate();
 
     const [categoria, setCategoria] = useState({
-        id: null,
         nome: '',
         descricao: ''
     });
@@ -14,7 +13,7 @@ function CategoriaFormStore() {
     // Função do tipo Anônima
     const onSubmit = (e) => {
         e.preventDefault();
-        axiosClient.post(`/categoria/store`, categoria)
+        axiosClient.post('/categoria/store', categoria)
             .then(() => {
                 setCategoria({});
                 console.log('Categoria incluído com sucesso');

@@ -7,7 +7,7 @@ function UserFormStore() {
 
     const [user, setUser] = useState({
         id: null,
-        name: '',
+        nome: '',
         username: '',
         birth_date: new Date().toISOString().split('T')[0],
         email: '',
@@ -43,7 +43,7 @@ function UserFormStore() {
                     <form onSubmit={(e) => onSubmit(e)}>
                         <input
                             type="text"
-                            value={user.name}
+                            value={user.nome}
                             placeholder="Nome Completo"
                             onChange={
                                 e => setUser({
