@@ -8,7 +8,7 @@ function ComentarioFormList() {
   //const {page, pageSize} = userParams();
 
   const getUsers = () => {
-    axiosClient.get(`/user/index?page{}`)
+    axiosClient.get(`/comentario/index`)
               .then(({data}) => {
                 setUsers(data.data);
               }
@@ -32,19 +32,18 @@ function ComentarioFormList() {
           alignItems: 'center', 
         }}>
 
-          <h1>Lista de Usuários</h1>
-          <Link to="/user/store" className='btn-add'>Store</Link>
+          <h1>Lista de Comentarios</h1>
+          <Link to="/comentario/store" className='btn-add'>Store</Link>
         </div>
         <table>
           
           <thead>
             <tr>
               <th>ID</th>
-              <th>Nome</th>
-              <th>Username</th>
-              <th>Email</th>
-              <th>Data de Nascimento</th>
-              <th>Bios</th>
+              <th>Texto</th>
+              <th>curtidas</th>
+              <th>id post</th>
+              <th>id usuario</th>
               <th className='center actions' colSpan={3}>Ações</th>
             </tr>
           </thead>
@@ -52,31 +51,29 @@ function ComentarioFormList() {
           <tbody>
             {
               users.length > 0 ? (
-                users.map((user, index) => (
+                users.map((comentario, index) => (
                   <tr key={index}>
 
-                    <td>{user.id}</td>
+                    <td>{comentario.id}</td>
 
-                    <td>{user.name}</td>
+                    <td>{comentario.texto}</td>
 
-                    <td>{user.username}</td>
+                    <td>{comentario.curtidas}</td>
 
-                    <td>{user.email}</td>
+                    <td>{comentario.post_id}</td>
 
-                    <td>{user.birth_date}</td>
-
-                    <td>{user.bios}</td>
+                    <td>{comentario.usuario_id}</td>
 
                     <td className='center actions'>
-                      <Link to={`/user/update/${user.id}`} className='btn-edit'>Update</Link>
+                      <Link to={`/comentario/update/${comentario.id}`} className='btn-edit'>Update</Link>
                     </td>
 
                     <td className='center actions'>
-                      <Link to={`/user/destroy/${user.id}`} className='btn-delete'>Destroy</Link>
+                      <Link to={`/comentario/destroy/${comentario.id}`} className='btn-delete'>Destroy</Link>
                     </td>
                   
                     <td className='center actions'>
-                      <Link to={`/user/show/${user.id}`} className='btn-show'>Show</Link>
+                      <Link to={`/comentario/show/${comentario.id}`} className='btn-show'>Show</Link>
                     </td>
 
                   </tr>
@@ -88,8 +85,8 @@ function ComentarioFormList() {
               )
             }
 
-            <button type="button"></button>
           </tbody>
+          <button type="button"></button>
         </table>
       </div>
     </div>

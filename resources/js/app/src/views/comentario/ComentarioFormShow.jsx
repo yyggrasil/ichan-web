@@ -5,15 +5,15 @@ import { useNavigate, useParams } from 'react-router-dom';
 function ComentarioFormShow() {
 
   const navigate = useNavigate();
-  const [user, setUser] = useState([]);
+  const [comentario, setComentario] = useState([]);
 
   const { id } = useParams();
 
   if (id) {
     useEffect(() => {
-      axiosClient.get(`/user/show/${id}`)
+      axiosClient.get(`/comentario/show/${id}`)
         .then(({ data }) => {
-          setUser(data.data);
+          setComentario(data.data);
         }).catch((error) => {
           console.log(error);
         })
@@ -22,24 +22,21 @@ function ComentarioFormShow() {
 
   const OnSubmit = (e) => {
     e.preventDefault();
-    navigate('/user/index');
+    navigate('/comentario/index');
   }
 
   return (
     <Fragment>
       <div className='display'>
         <div className='card animated fadeInDown'>
-          {user.id && <h1>Consulta do usuário: {user.username}</h1>}
+          {comentario.id && <h1>Consulta de Comentario: {comentario.id}</h1>}
 
           <br />
           <div className='info'>
-            {user.id && <h2>Id do usuário: {user.id}</h2>}
-            {user.id && <h2>Nome Completo: {user.name}</h2>}
-            {user.id && <h2>Nome de Usuário: {user.username}</h2>}
-            {user.id && <h2>Email: {user.email}</h2>}
-            {user.id && <h2>Data de Nascimento: {user.birth_date}</h2>}
-
-            {user.id && <h2>Bios: {user.bios}</h2>}
+            {comentario.id && <h2>usuario: {comentario.usuario_id}  </h2>}
+            {comentario.id && <h2>post: {comentario.post_id}  </h2>}
+            {comentario.id && <h2>curtidas: {comentario.curtidas}  </h2>}
+            {comentario.id && <h2>Comentario: {comentario.texto}  </h2>}
           </div>
 
           <button
@@ -48,18 +45,6 @@ function ComentarioFormShow() {
             Voltar
           </button>
         </div>
-
-        {/*
-        }
-        <form>
-          <input defaultValue={user.name} placeholder='Nome do Usuário' readOnly={true}/>
-          <input defaultValue={user.email} placeholder='E-mail de Usuário' readOnly={true}/>
-          <button 
-            className='btn'
-            onClick={(e)=>OnSubmit(e)}>
-              Voltar</button>
-        </form>*/
-        }
       </div>
     </Fragment>
   )

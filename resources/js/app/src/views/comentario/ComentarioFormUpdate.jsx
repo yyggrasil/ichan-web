@@ -5,82 +5,74 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
 function ComentarioFormUpdate() {
 
   const navigate = useNavigate();
-  const [user, setUser] = useState({
+  const [comentario, setComentario] = useState({
           id: null,
-          name: '',
-          username: '',
-          birth_date: new Date().toISOString().split('T')[0],
-          email: '',
-          bios: '',
+          texto: '',
+          curtidas: null,
+          usuario_id: null,
+          post_id: null,
       });
   const { id } = useParams();
   
   if (id){
     useEffect(() => {
-      axiosClient.get(`/user/show/${id}`)
+      axiosClient.get(`/comentario/show/${id}`)
         .then(({data}) => {
-          setUser(data.data);
+          setComentario(data.data);
         }).catch((error) => {
           console.log(error);
         })
-    }, [user.id]);
+    }, [comentario.id]);
   }
 
     const OnSubmit = (e) => {
       e.preventDefault();
-      axiosClient.put(`/user/update/${id}`, user)
+      axiosClient.put(`/comentario/update/${id}`, comentario)
         .then((data) => {
-          navigate('/user/index');
+          navigate('/comentario/index');
         }).catch((error) => {
           console.log(error);
         })
     }
     const OnCancel = () => {
-      navigate('/user/index');
+      navigate('/comentario/index');
     }
 
   return (
     <Fragment>
       <div className='display'>
         <div className='card animated fadeInDown'>
-          {user.id && <h1>Exclusão de usuário: {user.name}  </h1>}
+          {comentario.id && <h1>Alteração do Comentario: {comentario.id}  </h1>}
         </div>
 
         <form onSubmit={(e)=>OnSubmit(e)}>
 
           <input 
-            defaultValue={user.name} 
-            placeholder='Nome do Usuário'
+            defaultValue={comentario.usuario_id} 
+            placeholder='id do Usuário'
             onChange={
-              e => setUser({ ...user, name: e.target.value })
+              e => setComentario({ ...comentario, usuario_id: e.target.value })
             } />
 
           <input 
-            defaultValue={user.email} 
-            placeholder='E-mail de Usuário'
+            defaultValue={comentario.post_id} 
+            placeholder='id do post pai'
             onChange={
-              e => setUser({ ...user, email: e.target.value })
+              e => setComentario({ ...comentario, post_id: e.target.value })
             } />
 
           <input
-            defaultValue={user.username} 
-            placeholder='Username'
+            defaultValue={comentario.curtidas} 
+            placeholder='numero de curtidas'
             onChange={
-              e => setUser({ ...user, username: e.target.value })
+              e => setComentario({ ...comentario, curtidas: e.target.value })
             } />
 
           <input
-            type='date'
-            defaultValue={user.birth_date} 
-            placeholder='Data de Nascimento'
+            defaultValue={comentario.texto} 
+            placeholder='texto do comentario'
             onChange={
-              e => setUser({ ...user, birth_date: e.target.value })
-            } />
-          <input
-            defaultValue={user.bios} 
-            placeholder='Bios'
-            onChange={
-              e => setUser({ ...user, bios: e.target.value })
+              e => setComentario({ ...comentario, texto: e.target.value })
             } />
 
           <button 
@@ -90,7 +82,7 @@ function ComentarioFormUpdate() {
           <Link 
             type='button'
             className='btn btn-cancel'
-            to='/user/index'>
+            to='/comentario/index'>
               Cancelar
           </Link>
         </form>

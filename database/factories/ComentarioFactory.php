@@ -18,6 +18,7 @@ class ComentarioFactory extends Factory
     {
         return [
             'texto' => $this->faker->paragraph,
+            'curtidas' => $this->faker->numberBetween(0, 1000),
             'post_id' => $this->faker->numberBetween(1, 10),
             'usuario_id' => $this->faker->numberBetween(1, 10),
             'created_at' => $this->faker->dateTimeBetween('-1 year', 'now'),

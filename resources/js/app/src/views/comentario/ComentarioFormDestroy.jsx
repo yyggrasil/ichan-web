@@ -5,19 +5,14 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
 function ComentarioFormDestroy() {
 
   const navigate = useNavigate();
-  const [user, setUser] = useState({
-    id: null,
-    name: '',
-    username: '',
-    email: ''
-  })
+  const [comentario, setComentario] = useState([]);
   const { id } = useParams();
   
   if (id){
     useEffect(() => {
-      axiosClient.get(`/user/show/${id}`)
+      axiosClient.get(`/comentario/show/${id}`)
         .then(({data}) => {
-          setUser(data.data);
+          setComentario(data.data);
         }).catch((error) => {
           console.log(error);
         })
@@ -26,25 +21,27 @@ function ComentarioFormDestroy() {
 
     const OnSubmit = (e) => {
       e.preventDefault();
-      axiosClient.delete(`/user/destroy/${id}`)
+      axiosClient.delete(`/comentario/destroy/${id}`)
         .then(() => {
-          setUser({});
-          navigate('/user/index');
+          setComentario({});
+          navigate('/comentario/index');
         }).catch((error) => {
           console.log(error);
         })
     }
     const OnCancel = () => {
-      navigate('/user/index');
+      navigate('/comentario/index');
     }
 
   return (
     <Fragment>
       <div className='display'>
         <div className='card animated fadeInDown'>
-          {user.id && <h1>Exclusão do usuário: {user.username}  </h1>}
-          {user.id && <h2>Nome de Usuário: {user.name}  </h2>}
-          {user.id && <h2>Email: {user.email}  </h2>}
+          {comentario.id && <h1>Exclusão do comentario: {comentario.id}  </h1>}
+          {comentario.id && <h2>usuario: {comentario.usuario_id}  </h2>}
+          {comentario.id && <h2>post: {comentario.post_id}  </h2>}
+          {comentario.id && <h2>curtidas: {comentario.curtidas}  </h2>}
+          {comentario.id && <h2>Texto: {comentario.texto}  </h2>}
         </div>
 
         <form onSubmit={(e)=>OnSubmit(e)}>
@@ -55,7 +52,7 @@ function ComentarioFormDestroy() {
           <Link 
             type='button'
             className='btn btn-cancel'
-            to='/user/index'>
+            to='/comentario/index'>
               Cancelar
           </Link>
         </form>

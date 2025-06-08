@@ -31,6 +31,9 @@ class Comentario extends Model
     protected $fillable = [
         'texto',
         'curtidas',
+        'post_id',
+        'usuario_id',
+        'comentario_id',
     ];
 
     /**

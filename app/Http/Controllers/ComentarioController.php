@@ -36,7 +36,7 @@ class ComentarioController extends Controller
 
 
         return response()->json([
-            'message'=>'Relatorio de usuários',
+            'message'=>'Relatorio de comentarios',
             'status'=>200,
             'page'=>$page,
             'pageSize'=>$pageSize,
@@ -88,7 +88,7 @@ class ComentarioController extends Controller
         }
         
         return response()->json([
-            'message'=>'Usuário encontrado com sucesso',
+            'message'=>'Comentario encontrado com sucesso',
             'status'=>200,
             'data'=>$data
         ],200);
@@ -111,7 +111,7 @@ class ComentarioController extends Controller
 
         if (!$data) {
             return response()->json([
-                'message'=>'Usuário não localizado',
+                'message'=>'Comentario não localizado',
                 'data'=>$id,
                 'status'=>404
             ],404);

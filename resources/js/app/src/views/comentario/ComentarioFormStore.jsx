@@ -5,31 +5,29 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
 function ComentarioFormStore() {
     const navigate = useNavigate();
 
-    const [user, setUser] = useState({
+    const [comentario, setComentario] = useState({
         id: null,
-        name: '',
-        username: '',
-        birth_date: new Date().toISOString().split('T')[0],
-        email: '',
-        password: '',
-        bios: '',
+        usuario_id: null,
+        post_id: null,
+        curtidas: 0,
+        texto: ''
     });
 
     // Função do tipo Anônima
     const onSubmit = (e) => {
         e.preventDefault();
-        axiosClient.post(`/user/store`, user)
+        axiosClient.post(`/comentario/store`, comentario)
             .then(() => {
-                setUser({});
-                console.log('Usuário incluído com sucesso');
-                navigate('/user/index')
+                setComentario({});
+                console.log('comentario incluído com sucesso');
+                navigate('/comentario/index')
             }).catch((error) => {
                 console.log(error);
             })
     }
 
     const onCancel = (e) => {
-        navigate('/user/index');
+        navigate('/comentario/index');
     }
 
 
@@ -38,70 +36,53 @@ function ComentarioFormStore() {
         <Fragment>
             <div className="display">
                 <div className="card animated fadeinDown">
-                    <h1>Inclusão de Usuário</h1>
+                    <h1>Inclusão de Comentario</h1>
 
                     <form onSubmit={(e) => onSubmit(e)}>
+                        <p>Id do usuario</p>
                         <input
-                            type="text"
-                            value={user.name}
-                            placeholder="Nome Completo"
+                            type="number"
+                            value={comentario.usuario_id}
+                            placeholder="id do usuario*"
                             onChange={
-                                e => setUser({
-                                    ...user, name: e.target.value
+                                e => setComentario({
+                                    ...comentario, usuario_id: e.target.value
                                 })
                             }
                         />
+                        <p>id do Post</p>
                         <input
-                            type="text"
-                            value={user.username}
-                            placeholder="Nome de Usuário*"
+                            type="number"
+                            value={comentario.post_id}
+                            placeholder="id do post*"
                             onChange={
-                                e => setUser({
-                                    ...user, username: e.target.value
+                                e => setComentario({
+                                    ...comentario, post_id: e.target.value
                                 })
                             }
                         />
+                        <p>numero de curtidas</p>
                         <input
-                            type='date'
-                            value={user.birth_date}
-                            placeholder="Data de Nascimento"
+                            type='number'
+                            value={comentario.curtidas}
+                            placeholder="numero de curtidas"
                             onChange={
-                                e => setUser({
-                                    ...user, birth_date: e.target.value
+                                e => setComentario({
+                                    ...comentario, curtidas: e.target.value
                                 })
                             }
                         />
+                        <p>texto do comentario</p>
                         <input
-                            value={user.email}
-                            placeholder="Email"
+                            type='text'
+                            value={comentario.texto}
+                            placeholder="texto"
                             onChange={
-                                e => setUser({
-                                    ...user, email: e.target.value
+                                e => setComentario({
+                                    ...comentario, texto: e.target.value
                                 })
                             }
                         />
-                        <input
-                            type="password"
-                            value={user.password}
-                            placeholder="Senha"
-                            onChange={
-                                e => setUser({
-                                    ...user, password: e.target.value
-                                })
-                            }
-                        />
-                        <input
-                            type="text"
-                            value={user.bios}
-                            placeholder="Bios"
-                            onChange={
-                                e => setUser({
-                                    ...user, bios: e.target.value
-                                })
-                            }
-                        />
-                        <br />
-                        <br />
                         <button
                             className="btn btn-edit">
                             Salvar
@@ -109,7 +90,7 @@ function ComentarioFormStore() {
                         <Link
                             type='button'
                             className='btn btn-cancel'
-                            to='/user/index'>
+                            to='/comentario/index'>
                             Cancelar
                         </Link>
                     </form>
