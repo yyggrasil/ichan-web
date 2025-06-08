@@ -56,9 +56,6 @@ function CategoriaFormStore() {
                                 })
                             }
                         />
-                        
-                        <br />
-                        <br />
                         <button
                             className="btn btn-edit">
                             Salvar

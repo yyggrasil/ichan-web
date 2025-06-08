@@ -24,7 +24,7 @@ function CategoriaDaComunidadeFormDestroy() {
       axiosClient.delete(`/categoriadacomunidade/destroy/${id}`)
         .then(() => {
           setUser({});
-          navigate('/user/index');
+          navigate('/categoriadacomunidade/index');
         }).catch((error) => {
           console.log(error);
         })

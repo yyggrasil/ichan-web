@@ -17,7 +17,7 @@ function CategoriaDaComunidadeFormStore() {
         axiosClient.post(`/categoriadacomunidade/store`, categoriadacomunidade)
             .then(() => {
                 setUser({});
-                console.log('relacionamento criado com sucesso');
+                console.log('Relacionamento criado com sucesso');
                 navigate('/categoriadacomunidade/index')
             }).catch((error) => {
                 console.log(error);
@@ -57,8 +57,6 @@ function CategoriaDaComunidadeFormStore() {
                                 })
                             }
                         />
-                        <br />
-                        <br />
                         <button
                             className="btn btn-edit">
                             Salvar
@@ -66,7 +64,7 @@ function CategoriaDaComunidadeFormStore() {
                         <Link
                             type='button'
                             className='btn btn-cancel'
-                            to='/user/index'>
+                            to='/categoriadacomunidade/index'>
                             Cancelar
                         </Link>
                     </form>

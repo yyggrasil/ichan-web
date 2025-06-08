@@ -16,7 +16,7 @@ class CategoriaDaComunidade extends Model
      */
     public function comunidades()
     {
-        return $this->BelongsTo(Comunidade::class, 'categoria_id');
+        return $this->BelongsTo(Comunidade::class, 'comunidade_id');
     }
     public function categorias()
     {
@@ -30,6 +30,8 @@ class CategoriaDaComunidade extends Model
      * @var list<string>
      */
     protected $fillable = [
+        'categoria_id',
+        'comunidade_id'
     ];
 
     /**

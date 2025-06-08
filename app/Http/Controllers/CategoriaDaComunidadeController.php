@@ -108,17 +108,9 @@ class CategoriaDaComunidadeController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateCategoriaDaComunidade $request, string $id) : RedirectResponse
+    public function update(UpdateCategoriaDaComunidade $request, string $id)
     {
         $validator = $request->validated();
-
-        if ($validator->fails()) {
-            return response()->json([
-                'message' => 'Erro nas informações na conexão da categoria com a comunidade',
-                'status' => 404,
-                'errors' => $validator->errors()
-            ], 404);
-        }
 
         $data = CategoriaDaComunidade::find($id);
 
@@ -143,6 +135,20 @@ class CategoriaDaComunidadeController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $data = CategoriaDaComunidade::find($id);
+
+        if (!$data) {
+            return response()->json([
+                'message'=>'Relação não encontrado',
+                'status'=>404
+            ],404);
+        }
+
+        $data->delete();
+
+        return response()->json([
+            'message'=>'Relação deletada com sucesso.',
+            'status'=>200
+        ],200);
     }
 }

@@ -40,21 +40,21 @@ function CategoriaDaComunidadeFormUpdate() {
     <Fragment>
       <div className='display'>
         <div className='card animated fadeInDown'>
-          {categoriadacomunidade.id && <h1>Exclusão do relacionamento: {categoriadacomunidade.id}  </h1>}
+          {categoriadacomunidade.id && <h1>Edição do relacionamento: {categoriadacomunidade.id}  </h1>}
         </div>
 
         <form onSubmit={(e)=>OnSubmit(e)}>
 
           <input 
             defaultValue={categoriadacomunidade.categoria_id} 
-            placeholder='Nome do Usuário'
+            placeholder='id categoria'
             onChange={
               e => setcategoriadacomunidade({ ...categoriadacomunidade, categoria_id: e.target.value })
             } />
 
           <input 
             defaultValue={categoriadacomunidade.comunidade_id} 
-            placeholder='E-mail de Usuário'
+            placeholder='id comunidade'
             onChange={
               e => setcategoriadacomunidade({ ...categoriadacomunidade, comunidade_id: e.target.value })
             } />

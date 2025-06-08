@@ -8,7 +8,7 @@ function CategoriaDaComunidadeFormList() {
   //const {page, pageSize} = userParams();
 
   const getCategoriaDaComunidade = () => {
-    axiosClient.get(`/categoriadacomunidade/index`)
+    axiosClient.get(`/categoriadacomunidade/index?page=1&pageSize=10`)
               .then(({data}) => {
                 setCategoriaDaComunidade(data.data);
               }
@@ -78,9 +78,8 @@ function CategoriaDaComunidadeFormList() {
                 </tr>
               )
             }
-
-            <button type="button"></button>
           </tbody>
+          <button type="button"></button>
         </table>
       </div>
     </div>

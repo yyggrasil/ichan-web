@@ -86,11 +86,11 @@ const Rotas = () => {
         <Route path="/categoria/destroy/:id" element={<CategoriaFormDestroy />} />
 
       {/* categorias da comunidade */}
-        <Route path="/categoriaDaComunidade/index" element={<CategoriaDaComunidadeFormList />} />
-        <Route path="/categoriaDaComunidade/store" element={<CategoriaDaComunidadeFormStore />} />
-        <Route path="/categoriaDaComunidade/update/:id" element={<CategoriaDaComunidadeFormUpdate />} />
-        <Route path="/categoriaDaComunidade/show/:id" element={<CategoriaDaComunidadeFormShow />} />
-        <Route path="/categoriaDaComunidade/destroy/:id" element={<CategoriaDaComunidadeFormDestroy />} />
+        <Route path="/categoriadacomunidade/index" element={<CategoriaDaComunidadeFormList />} />
+        <Route path="/categoriadacomunidade/store" element={<CategoriaDaComunidadeFormStore />} />
+        <Route path="/categoriadacomunidade/update/:id" element={<CategoriaDaComunidadeFormUpdate />} />
+        <Route path="/categoriadacomunidade/show/:id" element={<CategoriaDaComunidadeFormShow />} />
+        <Route path="/categoriadacomunidade/destroy/:id" element={<CategoriaDaComunidadeFormDestroy />} />
 
       {/* comentarios */}
         <Route path="/comentario/index" element={<ComentarioFormList />} />
