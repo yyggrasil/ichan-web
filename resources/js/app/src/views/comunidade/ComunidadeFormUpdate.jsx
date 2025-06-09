@@ -7,14 +7,14 @@ function ComunidadeFormUpdate() {
     const navigate = useNavigate();
     const [comunidade, setComunidade] = useState({
         id: null,
-        name: '',
-        description: ''
+        nome: '',
+        descricao: ''
     })
     const { id } = useParams();
 
     if (id) {
         useEffect(() => {
-            axiosClient.get(`/user/show/${id}`)
+            axiosClient.get(`/comunidade/show/${id}`)
                 .then(({ data }) => {
                     setComunidade(data.data);
                 }).catch((error) => {
@@ -25,37 +25,37 @@ function ComunidadeFormUpdate() {
 
     const OnSubmit = (e) => {
         e.preventDefault();
-        axiosClient.put(`/user/update/${id}`)
+        axiosClient.put(`/comunidade/update/${id}`, comunidade)
             .then((data) => {
                 setComunidade(data.data);
-                navigate('/user/index');
+                navigate('/comunidade/index');
             }).catch((error) => {
                 console.log(error);
             })
     }
     const OnCancel = () => {
-        navigate('/user/index');
+        navigate('/comunidade/index');
     }
 
     return (
         <Fragment>
             <div className='display'>
                 <div className='card animated fadeInDown'>
-                    {comunidade.id && <h1>Exclusão de usuário: {comunidade.name}  </h1>}
+                    {comunidade.id && <h1>Edição da Comunidade: {comunidade.nome}  </h1>}
                 </div>
 
                 <form onSubmit={(e) => OnSubmit(e)}>
                     <input
-                        defaultValue={comunidade.name}
-                        placeholder='Nome do Usuário'
+                        defaultValue={comunidade.nome}
+                        placeholder='Nome da Comunidade'
                         onChange={
-                            e => setComunidade({ ...comunidade, name: e.target.value })
+                            e => setComunidade({ ...comunidade, nome: e.target.value })
                         } />
                     <input
-                        defaultValue={comunidade.email}
-                        placeholder='E-mail de Usuário'
+                        defaultValue={comunidade.descricao}
+                        placeholder='Descrição da Comunidade'
                         onChange={
-                            e => setComunidade({ ...comunidade, email: e.target.value })
+                            e => setComunidade({ ...comunidade, descricao: e.target.value })
                         } />
                     <button
                         className='btn btn-edit'>
@@ -64,7 +64,7 @@ function ComunidadeFormUpdate() {
                     <Link
                         type='button'
                         className='btn btn-cancel'
-                        to='/user/index'>
+                        to='/comunidade/index'>
                         Cancelar
                     </Link>
                 </form>

@@ -17,7 +17,7 @@ class FollowFactory extends Factory
     public function definition(): array
     {
         return [
-            'user_id' => $this->faker->numberBetween(1, 10),
+            'usuario_id' => $this->faker->numberBetween(1, 10),
             'comunidade_id' => $this->faker->numberBetween(1, 10),
             'created_at' => now(),
             'updated_at' => now(),

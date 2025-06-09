@@ -22,8 +22,8 @@ class StoreFollowRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'isModerator' => 'required|boolean|default:false',
-            'user_id' => 'required|exists:users,id',
+            'isModerator' => 'sometimes|boolean',
+            'usuario_id' => 'required|exists:users,id',
             'comunidade_id' => 'required|exists:comunidades,id'
         ];
     }
@@ -32,8 +32,8 @@ class StoreFollowRequest extends FormRequest
         return [
             'isModerator.required' => 'O campo isModerator é obrigatório.',
             'isModerator.boolean' => 'O campo isModerator deve ser verdadeiro ou falso.',
-            'user_id.required' => 'O campo user_id é obrigatório.',
-            'user_id.exists' => 'O usuário não existe.',
+            'usuario_id.required' => 'O campo user_id é obrigatório.',
+            'usuario_id.exists' => 'O usuário não existe.',
             'comunidade_id.required' => 'O campo comunidade_id é obrigatório.',
             'comunidade_id.exists' => 'A comunidade não existe.'
         ];

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Follow;
+use App\Http\Requests\StoreFollowRequest;
+use App\Http\Requests\UpdateFollowRequest;
 
 class FollowController extends Controller
 {
@@ -61,10 +63,7 @@ class FollowController extends Controller
     {
         $validator = $request->validated();
 
-        $data = Follow::create([
-            'follower_id' => $request->follower_id,
-            'followed_id' => $request->followed_id,
-        ]);
+        $data = Follow::create($request->all());
 
         return response()->json([
             'message'=>'Follow created successfully',

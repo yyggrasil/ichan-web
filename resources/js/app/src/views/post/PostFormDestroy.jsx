@@ -5,19 +5,14 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
 function PostFormDestroy() {
 
   const navigate = useNavigate();
-  const [user, setUser] = useState({
-    id: null,
-    name: '',
-    username: '',
-    email: ''
-  })
+  const [posts, setPosts] = useState([])
   const { id } = useParams();
   
   if (id){
     useEffect(() => {
-      axiosClient.get(`/user/show/${id}`)
+      axiosClient.get(`/post/show/${id}`)
         .then(({data}) => {
-          setUser(data.data);
+          setPosts(data.data);
         }).catch((error) => {
           console.log(error);
         })
@@ -26,25 +21,27 @@ function PostFormDestroy() {
 
     const OnSubmit = (e) => {
       e.preventDefault();
-      axiosClient.delete(`/user/destroy/${id}`)
+      axiosClient.delete(`/post/destroy/${id}`)
         .then(() => {
-          setUser({});
-          navigate('/user/index');
+          setPosts({});
+          navigate('/post/index');
         }).catch((error) => {
           console.log(error);
         })
     }
     const OnCancel = () => {
-      navigate('/user/index');
+      navigate('/post/index');
     }
 
   return (
     <Fragment>
       <div className='display'>
         <div className='card animated fadeInDown'>
-          {user.id && <h1>Exclusão do usuário: {user.username}  </h1>}
-          {user.id && <h2>Nome de Usuário: {user.name}  </h2>}
-          {user.id && <h2>Email: {user.email}  </h2>}
+          {posts.id && <h1>Exclusão do Post: {posts.titulo}  </h1>}
+          {posts.id && <h2>numero de curtidas: {posts.curtidas}  </h2>}
+          {posts.id && <h2>id do usuario: {posts.usuario_id}  </h2>}
+          {posts.id && <h2>id da comunidade: {posts.comunidade_id}  </h2>}
+          {posts.id && <h2>Texto do post: {posts.texto}  </h2>}
         </div>
 
         <form onSubmit={(e)=>OnSubmit(e)}>
@@ -55,7 +52,7 @@ function PostFormDestroy() {
           <Link 
             type='button'
             className='btn btn-cancel'
-            to='/user/index'>
+            to='/post/index'>
               Cancelar
           </Link>
         </form>

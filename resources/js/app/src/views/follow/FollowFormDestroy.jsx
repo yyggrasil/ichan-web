@@ -5,19 +5,19 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
 function FollowFormDestroy() {
 
   const navigate = useNavigate();
-  const [user, setUser] = useState({
+  const [follow, setFollow] = useState({
     id: null,
-    name: '',
-    username: '',
-    email: ''
+    usuario_id: '',
+    comunidade_id: '',
+    isModerator: 0
   })
   const { id } = useParams();
   
   if (id){
     useEffect(() => {
-      axiosClient.get(`/user/show/${id}`)
+      axiosClient.get(`/follow/show/${id}`)
         .then(({data}) => {
-          setUser(data.data);
+          setFollow(data.data);
         }).catch((error) => {
           console.log(error);
         })
@@ -26,25 +26,26 @@ function FollowFormDestroy() {
 
     const OnSubmit = (e) => {
       e.preventDefault();
-      axiosClient.delete(`/user/destroy/${id}`)
+      axiosClient.delete(`/follow/destroy/${id}`)
         .then(() => {
-          setUser({});
-          navigate('/user/index');
+          setFollow({});
+          navigate('/follow/index');
         }).catch((error) => {
           console.log(error);
         })
     }
     const OnCancel = () => {
-      navigate('/user/index');
+      navigate('/follow/index');
     }
 
   return (
     <Fragment>
       <div className='display'>
         <div className='card animated fadeInDown'>
-          {user.id && <h1>Exclusão do usuário: {user.username}  </h1>}
-          {user.id && <h2>Nome de Usuário: {user.name}  </h2>}
-          {user.id && <h2>Email: {user.email}  </h2>}
+          {follow.id && <h1>Exclusão da seguida: {follow.id}  </h1>}
+          {follow.id && <h2>id de Usuário: {follow.usuario_id}  </h2>}
+          {follow.id && <h2>id de comunidade: {follow.comunidade_id}  </h2>}
+          {follow.id && <h2>É Moderador: {follow.isModerator ? "sim": "não"}  </h2>}
         </div>
 
         <form onSubmit={(e)=>OnSubmit(e)}>
@@ -55,7 +56,7 @@ function FollowFormDestroy() {
           <Link 
             type='button'
             className='btn btn-cancel'
-            to='/user/index'>
+            to='/follow/index'>
               Cancelar
           </Link>
         </form>

@@ -17,7 +17,7 @@ class CategoriaFactory extends Factory
     public function definition(): array
     {
         return [
-            'nome' => $this->faker->word,
+            'nome' => $this->faker->unique()->word,
             'descricao' => $this->faker->sentence,
             'created_at' => $this->faker->dateTimeBetween('-1 year', 'now'),
             'updated_at' => $this->faker->dateTimeBetween('-1 year', 'now'),

@@ -17,7 +17,7 @@ return new class extends Migration
                 ->contrained('comunidades')
                 ->onDelete('cascade');
 
-            $table->foreignId('user_id')
+            $table->foreignId('usuario_id')
                 ->contrained('users')
                 ->onDelete('cascade');
         });   

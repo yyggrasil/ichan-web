@@ -26,6 +26,8 @@ class Follow extends Model
      */
     protected $fillable = [
         'isModerator',
+        'usuario_id',
+        'comunidade_id',
     ];
 
     /**

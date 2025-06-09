@@ -8,10 +8,13 @@ export default function DefaultLayout({children})
     <div id="defaultLayout">
         <aside>
             <Link to="/dashboard"> Dashboard </Link>
-            <Link to="/user/index"> Usuário </Link>
-            <Link to="/editora/index"> Editora </Link>
-            <Link to="/autor/index"> Autor </Link>
-            <Link to="/livro/index"> Livro </Link>
+            <Link to="/user/index"> User </Link>
+            <Link to="/comunidade/index"> Comunidade </Link>
+            <Link to="/categoria/index"> Categoria </Link>
+            <Link to="/post/index"> Post </Link>
+            <Link to="/comentario/index"> Comentario </Link>
+            <Link to="/categoriadacomunidade/index"> categoria da comunidade </Link>
+            <Link to="/follow/index"> seguidores </Link>
         </aside>
         <div className='content'>
             <header>

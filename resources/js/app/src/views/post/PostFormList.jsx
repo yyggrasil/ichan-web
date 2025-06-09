@@ -4,13 +4,13 @@ import { data, Link } from 'react-router-dom';
 
 function PostFormList() {
 
-  const [users, setUsers] = React.useState([]);
+  const [posts, setPosts] = React.useState([]);
   //const {page, pageSize} = userParams();
 
   const getUsers = () => {
-    axiosClient.get(`/user/index?page{}`)
+    axiosClient.get(`/post/index?pageSize=10`)
               .then(({data}) => {
-                setUsers(data.data);
+                setPosts(data.data);
               }
               ).catch((error) => {
                 console.log(error);
@@ -32,51 +32,51 @@ function PostFormList() {
           alignItems: 'center', 
         }}>
 
-          <h1>Lista de Usuários</h1>
-          <Link to="/user/store" className='btn-add'>Store</Link>
+          <h1>Lista de Posts</h1>
+          <Link to="/post/store" className='btn-add'>Store</Link>
         </div>
         <table>
           
           <thead>
             <tr>
               <th>ID</th>
-              <th>Nome</th>
-              <th>Username</th>
-              <th>Email</th>
-              <th>Data de Nascimento</th>
-              <th>Bios</th>
+              <th>titulo</th>
+              <th>texto</th>
+              <th>curtidas</th>
+              <th>id de usuario</th>
+              <th>id de comunidade</th>
               <th className='center actions' colSpan={3}>Ações</th>
             </tr>
           </thead>
 
           <tbody>
             {
-              users.length > 0 ? (
-                users.map((user, index) => (
+              posts.length > 0 ? (
+                posts.map((post, index) => (
                   <tr key={index}>
 
-                    <td>{user.id}</td>
+                    <td>{post.id}</td>
 
-                    <td>{user.name}</td>
+                    <td>{post.titulo}</td>
 
-                    <td>{user.username}</td>
+                    <td>{post.texto}</td>
 
-                    <td>{user.email}</td>
+                    <td>{post.curtidas}</td>
 
-                    <td>{user.birth_date}</td>
+                    <td>{post.usuario_id}</td>
 
-                    <td>{user.bios}</td>
+                    <td>{post.comunidade_id}</td>
 
                     <td className='center actions'>
-                      <Link to={`/user/update/${user.id}`} className='btn-edit'>Update</Link>
+                      <Link to={`/post/update/${post.id}`} className='btn-edit'>Update</Link>
                     </td>
 
                     <td className='center actions'>
-                      <Link to={`/user/destroy/${user.id}`} className='btn-delete'>Destroy</Link>
+                      <Link to={`/post/destroy/${post.id}`} className='btn-delete'>Destroy</Link>
                     </td>
                   
                     <td className='center actions'>
-                      <Link to={`/user/show/${user.id}`} className='btn-show'>Show</Link>
+                      <Link to={`/post/show/${post.id}`} className='btn-show'>Show</Link>
                     </td>
 
                   </tr>

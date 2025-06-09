@@ -24,7 +24,7 @@ class UpdatePostRequest extends FormRequest
         return [
             'titulo' => 'string|max:255',
             'texto' => 'string|max:1000',
-            'curtidas' => 'bigint',
+            'curtidas' => 'integer',
             'comunidade_id' => 'exists:comunidades,id',
             'categoria_id' => 'exists:categorias,id'
         ];
@@ -36,7 +36,7 @@ class UpdatePostRequest extends FormRequest
             'titulo.max' => 'O campo título não pode ter mais de 255 caracteres.',
             'texto.string' => 'O campo texto deve ser uma string.',
             'texto.max' => 'O campo texto não pode ter mais de 1000 caracteres.',
-            'curtidas.bigint' => 'O campo curtidas deve ser um número inteiro.',
+            'curtidas.integer' => 'O campo curtidas deve ser um número inteiro.',
             'comunidade_id.exists' => 'A comunidade não existe.',
             'categoria_id.exists' => 'A categoria não existe.'
         ];

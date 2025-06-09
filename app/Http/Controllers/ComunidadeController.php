@@ -60,18 +60,9 @@ class ComunidadeController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreComunidadeRequest $request): RedirectResponse
+    public function store(StoreComunidadeRequest $request)
     {
         $validator = $request->validated();
-
-        if ($validator->fails()) {
-
-            return response()->json([
-                'message'=>"Erro nas informações da comunidade",
-                'status'=>404,
-                'errors'=>$validator->errors()
-            ],404);
-        }
 
         $data = Comunidade::create($request->all());
         return response()->json([
@@ -136,9 +127,7 @@ class ComunidadeController extends Controller
             ],404);
         }
 
-        $data->name = $request->name;
-        $data->description = $request->description;
-        $data->save();
+        $data->update($request->all());
         return response()->json([
             'message'=>'Comunidade atualizada com sucesso',
             'status'=>200,

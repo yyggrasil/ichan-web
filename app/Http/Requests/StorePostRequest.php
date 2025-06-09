@@ -23,8 +23,9 @@ class StorePostRequest extends FormRequest
     {
         return [
             'titulo' => 'required|string|max:255',
-            'descricao' => 'required|string|max:1000',
-            'comunidade_id' => 'required|exists:comunidades,id'
+            'texto' => 'required|string|max:1000',
+            'comunidade_id' => 'required|exists:comunidades,id',
+            'usuario_id' => 'required|exists:users,id',
         ];
     }
     public function messages()
@@ -33,11 +34,13 @@ class StorePostRequest extends FormRequest
             'titulo.required' => 'O campo título é obrigatório.',
             'titulo.string' => 'O campo título deve ser uma string.',
             'titulo.max' => 'O campo título não pode ter mais de 255 caracteres.',
-            'descricao.required' => 'O campo descrição é obrigatório.',
-            'descricao.string' => 'O campo descrição deve ser uma string.',
-            'descricao.max' => 'O campo descrição não pode ter mais de 1000 caracteres.',
+            'texto.required' => 'O campo descrição é obrigatório.',
+            'texto.string' => 'O campo descrição deve ser uma string.',
+            'texto.max' => 'O campo descrição não pode ter mais de 1000 caracteres.',
             'comunidade_id.required' => 'O campo comunidade_id é obrigatório.',
-            'comunidade_id.exists' => 'A comunidade não existe.'
+            'comunidade_id.exists' => 'A comunidade não existe.',
+            'usuario_id.required' => 'O campo usuario_id é obrigatório.',
+            'usuario_id.exists' => 'O usuário não existe.'
         ];
     }
 }

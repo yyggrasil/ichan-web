@@ -5,83 +5,83 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
 function FollowFormUpdate() {
 
   const navigate = useNavigate();
-  const [user, setUser] = useState({
+  const [follow, setFollow] = useState({
           id: null,
-          name: '',
-          username: '',
-          birth_date: new Date().toISOString().split('T')[0],
-          email: '',
-          bios: '',
+          usuario_id: '',
+          comunidade_id: '',
+          isModerator: 0
       });
   const { id } = useParams();
   
   if (id){
     useEffect(() => {
-      axiosClient.get(`/user/show/${id}`)
+      axiosClient.get(`/follow/show/${id}`)
         .then(({data}) => {
-          setUser(data.data);
+          setFollow(data.data);
         }).catch((error) => {
           console.log(error);
         })
-    }, [user.id]);
+    }, [follow.id]);
   }
 
     const OnSubmit = (e) => {
       e.preventDefault();
-      axiosClient.put(`/user/update/${id}`, user)
+      axiosClient.put(`/follow/update/${id}`, follow)
         .then((data) => {
-          navigate('/user/index');
+          navigate('/follow/index');
         }).catch((error) => {
           console.log(error);
         })
     }
     const OnCancel = () => {
-      navigate('/user/index');
+      navigate('/follow/index');
     }
 
   return (
     <Fragment>
       <div className='display'>
         <div className='card animated fadeInDown'>
-          {user.id && <h1>Exclusão de usuário: {user.name}  </h1>}
+          {follow.id && <h1>Edição De seguidor: {follow.id}  </h1>}
         </div>
 
         <form onSubmit={(e)=>OnSubmit(e)}>
 
-          <input 
-            defaultValue={user.name} 
-            placeholder='Nome do Usuário'
+          <input
+            type="number"
+            value={follow.usuario_id}
+            placeholder="id usuario"
             onChange={
-              e => setUser({ ...user, name: e.target.value })
-            } />
-
-          <input 
-            defaultValue={user.email} 
-            placeholder='E-mail de Usuário'
-            onChange={
-              e => setUser({ ...user, email: e.target.value })
-            } />
+                e => setFollow({
+                    ...follow, usuario_id: e.target.value
+                })
+            }
+          />
+          <input
+              type="number"
+              value={follow.comunidade_id}
+              placeholder="Id da Comunidade"
+              onChange={
+                  e => setFollow({
+                      ...follow, comunidade_id: e.target.value
+                  })
+              }
+          />
 
           <input
-            defaultValue={user.username} 
-            placeholder='Username'
-            onChange={
-              e => setUser({ ...user, username: e.target.value })
-            } />
-
-          <input
-            type='date'
-            defaultValue={user.birth_date} 
-            placeholder='Data de Nascimento'
-            onChange={
-              e => setUser({ ...user, birth_date: e.target.value })
-            } />
-          <input
-            defaultValue={user.bios} 
-            placeholder='Bios'
-            onChange={
-              e => setUser({ ...user, bios: e.target.value })
-            } />
+              type="number"
+              min={0}
+              max={1}
+              value={follow.isModerator}
+              id="isModerator"
+              name="isModerator"
+              placeholder='É Moderador?'
+              onChange={e =>
+                  setFollow({
+                      ...follow,
+                      isModerator: Number(e.target.value)
+                  })
+              }
+          />
 
           <button 
             className='btn btn-edit'>
@@ -90,7 +90,7 @@ function FollowFormUpdate() {
           <Link 
             type='button'
             className='btn btn-cancel'
-            to='/user/index'>
+            to='/follow/index'>
               Cancelar
           </Link>
         </form>

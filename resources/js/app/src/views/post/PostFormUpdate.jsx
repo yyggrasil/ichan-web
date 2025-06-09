@@ -5,83 +5,98 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
 function PostFormUpdate() {
 
   const navigate = useNavigate();
-  const [user, setUser] = useState({
-          id: null,
-          name: '',
-          username: '',
-          birth_date: new Date().toISOString().split('T')[0],
-          email: '',
-          bios: '',
+  const [posts, setPosts] = useState({
+        id: null,
+        titulo: '',
+        curtidas: 0,
+        texto: '',
+        usuario_id: '',
+        comunidade_id: '',
       });
   const { id } = useParams();
   
   if (id){
     useEffect(() => {
-      axiosClient.get(`/user/show/${id}`)
+      axiosClient.get(`/post/show/${id}`)
         .then(({data}) => {
-          setUser(data.data);
+          setPosts(data.data);
         }).catch((error) => {
           console.log(error);
         })
-    }, [user.id]);
+    }, [posts.id]);
   }
 
     const OnSubmit = (e) => {
       e.preventDefault();
-      axiosClient.put(`/user/update/${id}`, user)
+      axiosClient.put(`/post/update/${id}`, posts)
         .then((data) => {
-          navigate('/user/index');
+          navigate('/post/index');
         }).catch((error) => {
           console.log(error);
         })
     }
     const OnCancel = () => {
-      navigate('/user/index');
+      navigate('/post/index');
     }
 
   return (
     <Fragment>
       <div className='display'>
         <div className='card animated fadeInDown'>
-          {user.id && <h1>Exclusão de usuário: {user.name}  </h1>}
+          {posts.id && <h1>Edição de Posts: {posts.titulo}  </h1>}
         </div>
 
         <form onSubmit={(e)=>OnSubmit(e)}>
 
-          <input 
-            defaultValue={user.name} 
-            placeholder='Nome do Usuário'
-            onChange={
-              e => setUser({ ...user, name: e.target.value })
-            } />
-
-          <input 
-            defaultValue={user.email} 
-            placeholder='E-mail de Usuário'
-            onChange={
-              e => setUser({ ...user, email: e.target.value })
-            } />
-
           <input
-            defaultValue={user.username} 
-            placeholder='Username'
+            type="text"
+            value={posts.titulo}
+            placeholder="titulo*"
             onChange={
-              e => setUser({ ...user, username: e.target.value })
-            } />
-
+                e => setPosts({
+                    ...posts, titulo: e.target.value
+                })
+            }
+          />
           <input
-            type='date'
-            defaultValue={user.birth_date} 
-            placeholder='Data de Nascimento'
-            onChange={
-              e => setUser({ ...user, birth_date: e.target.value })
-            } />
+              type="number"
+              value={posts.usuario_id}
+              placeholder="id de Usuário*"
+              onChange={
+                  e => setPosts({
+                      ...posts, usuario_id: e.target.value
+                  })
+              }
+          />
           <input
-            defaultValue={user.bios} 
-            placeholder='Bios'
-            onChange={
-              e => setUser({ ...user, bios: e.target.value })
-            } />
+              type='number'
+              value={posts.comunidade_id}
+              placeholder="id da Comunidade*"
+              onChange={
+                  e => setPosts({
+                      ...posts, comunidade_id: e.target.value
+                  })
+              }
+          />
+          <input
+              value={posts.texto}
+              placeholder="texto do post*"
+              onChange={
+                  e => setPosts({
+                      ...posts, texto: e.target.value
+                  })
+              }
+          />
+          <input
+              type="number"
+              value={posts.curtidas}
+              placeholder="numero de curtidas"
+              onChange={
+                  e => setPosts({
+                      ...posts, curtidas: e.target.value
+                  })
+              }
+          />
 
           <button 
             className='btn btn-edit'>
@@ -90,7 +105,7 @@ function PostFormUpdate() {
           <Link 
             type='button'
             className='btn btn-cancel'
-            to='/user/index'>
+            to='/post/index'>
               Cancelar
           </Link>
         </form>

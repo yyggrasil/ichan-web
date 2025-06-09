@@ -18,7 +18,7 @@ class PostFactory extends Factory
     {
         return [
             'titulo' => $this->faker->sentence,
-            'texto' => $this->faker->paragraph,
+            'texto' => $this->faker->text(255),
             'curtidas' => $this->faker->numberBetween(0, 1000),
             'comunidade_id' => $this->faker->numberBetween(1, 10),
             'usuario_id' => $this->faker->numberBetween(1, 10),

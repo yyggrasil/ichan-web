@@ -32,12 +32,12 @@ function ComunidadeFormShow() {
     <Fragment>
       <div className='display'>
         <div className='card animated fadeInDown'>
-          {comunidade.id && <h1>Consulta de Comunidades: {comunidade.name}</h1>}
+          {comunidade.id && <h1>Consulta de Comunidades: {comunidade.nome}</h1>}
         </div>
 
         <form>
-          <input defaultValue={comunidade.name} placeholder='Nome da comunidade' readOnly={true}/>
-          <input defaultValue={comunidade.description} placeholder='Descricao da comunidade' readOnly={true}/>
+          <input defaultValue={comunidade.nome} placeholder='Nome da comunidade' readOnly={true}/>
+          <input defaultValue={comunidade.descricao} placeholder='Descricao da comunidade' readOnly={true}/>
           <button 
             className='btn'
             onClick={(e)=>OnSubmit(e)}>

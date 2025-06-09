@@ -5,31 +5,30 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
 function PostFormStore() {
     const navigate = useNavigate();
 
-    const [user, setUser] = useState({
+    const [posts, setPosts] = useState({
         id: null,
-        name: '',
-        username: '',
-        birth_date: new Date().toISOString().split('T')[0],
-        email: '',
-        password: '',
-        bios: '',
+        titulo: '',
+        curtidas: 0,
+        texto: '',
+        usuario_id: '',
+        comunidade_id: '',
     });
 
     // Função do tipo Anônima
     const onSubmit = (e) => {
         e.preventDefault();
-        axiosClient.post(`/user/store`, user)
+        axiosClient.post(`/post/store`, posts)
             .then(() => {
-                setUser({});
+                setPosts({});
                 console.log('Usuário incluído com sucesso');
-                navigate('/user/index')
+                navigate('/post/index')
             }).catch((error) => {
                 console.log(error);
             })
     }
 
     const onCancel = (e) => {
-        navigate('/user/index');
+        navigate('/post/index');
     }
 
 
@@ -38,65 +37,55 @@ function PostFormStore() {
         <Fragment>
             <div className="display">
                 <div className="card animated fadeinDown">
-                    <h1>Inclusão de Usuário</h1>
+                    <h1>Inclusão de Post</h1>
 
                     <form onSubmit={(e) => onSubmit(e)}>
                         <input
                             type="text"
-                            value={user.name}
-                            placeholder="Nome Completo"
+                            value={posts.titulo}
+                            placeholder="titulo*"
                             onChange={
-                                e => setUser({
-                                    ...user, name: e.target.value
+                                e => setPosts({
+                                    ...posts, titulo: e.target.value
                                 })
                             }
                         />
                         <input
-                            type="text"
-                            value={user.username}
-                            placeholder="Nome de Usuário*"
+                            type="number"
+                            value={posts.usuario_id}
+                            placeholder="id de Usuário*"
                             onChange={
-                                e => setUser({
-                                    ...user, username: e.target.value
+                                e => setPosts({
+                                    ...posts, usuario_id: e.target.value
                                 })
                             }
                         />
                         <input
-                            type='date'
-                            value={user.birth_date}
-                            placeholder="Data de Nascimento"
+                            type='number'
+                            value={posts.comunidade_id}
+                            placeholder="id da Comunidade*"
                             onChange={
-                                e => setUser({
-                                    ...user, birth_date: e.target.value
+                                e => setPosts({
+                                    ...posts, comunidade_id: e.target.value
                                 })
                             }
                         />
                         <input
-                            value={user.email}
-                            placeholder="Email"
+                            value={posts.texto}
+                            placeholder="texto do post*"
                             onChange={
-                                e => setUser({
-                                    ...user, email: e.target.value
+                                e => setPosts({
+                                    ...posts, texto: e.target.value
                                 })
                             }
                         />
                         <input
-                            type="password"
-                            value={user.password}
-                            placeholder="Senha"
+                            type="number"
+                            value={posts.curtidas}
+                            placeholder="numero de curtidas"
                             onChange={
-                                e => setUser({
-                                    ...user, password: e.target.value
-                                })
-                            }
-                        />
-                        <input
-                            type="text"
-                            value={user.bios}
-                            placeholder="Bios"
-                            onChange={
-                                e => setUser({
-                                    ...user, bios: e.target.value
+                                e => setPosts({
+                                    ...posts, curtidas: e.target.value
                                 })
                             }
                         />
@@ -109,7 +98,7 @@ function PostFormStore() {
                         <Link
                             type='button'
                             className='btn btn-cancel'
-                            to='/user/index'>
+                            to='/post/index'>
                             Cancelar
                         </Link>
                     </form>

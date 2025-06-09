@@ -4,12 +4,12 @@ import { data, Link } from 'react-router-dom';
 
 function ComunidadeFormList() {
 
-    const [comunidades, setComunidade] = React.useState([]);
+    const [follow, setfollow] = React.useState([]);
 
     const getComunidades = () => {
         axiosClient.get('/comunidade/index')
             .then(({ data }) => {
-                setComunidade(data.data);
+                setfollow(data.data);
             }
             ).catch((error) => {
                 console.log(error);
@@ -47,15 +47,15 @@ function ComunidadeFormList() {
 
                     <tbody>
                         {
-                            comunidades.length > 0 ? (
-                                comunidades.map((comunidade, index) => (
+                            follow.length > 0 ? (
+                                follow.map((comunidade, index) => (
                                     <tr key={index}>
 
                                         <td>{comunidade.id}</td>
 
-                                        <td>{comunidade.name}</td>
+                                        <td>{comunidade.nome}</td>
 
-                                        <td>{comunidade.description}</td>
+                                        <td>{comunidade.descricao}</td>
 
                                         <td className='center actions'>
                                             <Link to={`/comunidade/update/${comunidade.id}`} className='btn-edit'>Update</Link>

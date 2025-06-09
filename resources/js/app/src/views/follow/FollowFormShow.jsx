@@ -5,15 +5,15 @@ import { useNavigate, useParams } from 'react-router-dom';
 function FollowFormShow() {
 
   const navigate = useNavigate();
-  const [user, setUser] = useState([]);
+  const [follow, setFollow] = useState([]);
 
   const { id } = useParams();
 
   if (id) {
     useEffect(() => {
-      axiosClient.get(`/user/show/${id}`)
+      axiosClient.get(`/follow/show/${id}`)
         .then(({ data }) => {
-          setUser(data.data);
+          setFollow(data.data);
         }).catch((error) => {
           console.log(error);
         })
@@ -22,24 +22,20 @@ function FollowFormShow() {
 
   const OnSubmit = (e) => {
     e.preventDefault();
-    navigate('/user/index');
+    navigate('/follow/index');
   }
 
   return (
     <Fragment>
       <div className='display'>
         <div className='card animated fadeInDown'>
-          {user.id && <h1>Consulta do usuário: {user.username}</h1>}
+          {follow.id && <h1>Consulta da seguida: {follow.id}</h1>}
 
           <br />
           <div className='info'>
-            {user.id && <h2>Id do usuário: {user.id}</h2>}
-            {user.id && <h2>Nome Completo: {user.name}</h2>}
-            {user.id && <h2>Nome de Usuário: {user.username}</h2>}
-            {user.id && <h2>Email: {user.email}</h2>}
-            {user.id && <h2>Data de Nascimento: {user.birth_date}</h2>}
-
-            {user.id && <h2>Bios: {user.bios}</h2>}
+            {follow.id && <h2>id usuario: {follow.usuario_id}</h2>}
+            {follow.id && <h2>id comunidade: {follow.comunidade_id}</h2>}
+            {follow.id && <h2>É Moderador: {follow.isModerator ? "sim" : "não"}</h2>}
           </div>
 
           <button

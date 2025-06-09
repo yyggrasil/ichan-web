@@ -8,8 +8,8 @@ function ComunidadeFormStore()
 
     const [comunidade, setComunidade] = useState({
         id:null,
-        name:'',
-        description:'',
+        nome:'',
+        descricao:'',
     });
 
     // Função do tipo Anônima
@@ -45,19 +45,19 @@ function ComunidadeFormStore()
                     <form onSubmit={(e)=>onSubmit(e)}>
                         <input
                             type="text"
-                            value={comunidade.name}
+                            value={comunidade.nome}
                             placeholder="Nome da Comunidade"
                             onChange={
                                 e => setComunidade({
-                                    ...comunidade, name:e.target.value
+                                    ...comunidade, nome:e.target.value
                                 })
                             } />
                         <input
-                            value={comunidade.description}
+                            value={comunidade.descricao}
                             placeholder="Descrição"
                             onChange={
                                 e => setComunidade({
-                                    ...comunidade, description:e.target.value
+                                    ...comunidade, descricao:e.target.value
                                 })
                             } />
                         <button className="btn btn-edit">Salvar</button>

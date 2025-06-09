@@ -30,10 +30,10 @@ class UpdateComunidadeRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'name.string' => 'O campo nome deve ser uma string.',
-            'name.max' => 'O campo nome deve ter no máximo 255 caracteres.',
-            'description.string' => 'O campo descrição deve ser uma string.',
-            'description.max' => 'O campo descrição deve ter no máximo 1000 caracteres.',
+            'nome.string' => 'O campo nome deve ser uma string.',
+            'nome.max' => 'O campo nome deve ter no máximo 255 caracteres.',
+            'descricao.string' => 'O campo descrição deve ser uma string.',
+            'descricao.max' => 'O campo descrição deve ter no máximo 1000 caracteres.',
         ];
     }
 }

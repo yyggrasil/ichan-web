@@ -15,10 +15,6 @@ class Post extends Model
     {
         return $this->belongsTo(Comunidade::class);
     }
-    public function Comentario()
-    {
-        return $this->hasMany(Comentario::class);
-    }
     public function User()
     {
         return $this->belongsTo(User::class);
@@ -31,7 +27,9 @@ class Post extends Model
     protected $fillable = [
         'titulo',
         'texto',
-        "curtidas"
+        "curtidas",
+        'comunidade_id',
+        'usuario_id',
     ];
 
     /**

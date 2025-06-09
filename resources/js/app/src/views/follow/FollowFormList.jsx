@@ -4,13 +4,13 @@ import { data, Link } from 'react-router-dom';
 
 function FollowFormList() {
 
-  const [users, setUsers] = React.useState([]);
+  const [follow, setFollow] = React.useState([]);
   //const {page, pageSize} = userParams();
 
   const getUsers = () => {
-    axiosClient.get(`/user/index?page{}`)
+    axiosClient.get(`/follow/index?pageSize=10`)
               .then(({data}) => {
-                setUsers(data.data);
+                setFollow(data.data);
               }
               ).catch((error) => {
                 console.log(error);
@@ -32,51 +32,45 @@ function FollowFormList() {
           alignItems: 'center', 
         }}>
 
-          <h1>Lista de Usuários</h1>
-          <Link to="/user/store" className='btn-add'>Store</Link>
+          <h1>Lista de Seguidores</h1>
+          <Link to="/follow/store" className='btn-add'>Store</Link>
         </div>
         <table>
           
           <thead>
             <tr>
               <th>ID</th>
-              <th>Nome</th>
-              <th>Username</th>
-              <th>Email</th>
-              <th>Data de Nascimento</th>
-              <th>Bios</th>
+              <th>id usuario</th>
+              <th>id comunidade</th>
+              <th>É Moderador</th>
               <th className='center actions' colSpan={3}>Ações</th>
             </tr>
           </thead>
 
           <tbody>
             {
-              users.length > 0 ? (
-                users.map((user, index) => (
+              follow.length > 0 ? (
+                follow.map((follow, index) => (
                   <tr key={index}>
 
-                    <td>{user.id}</td>
+                    <td>{follow.id}</td>
 
-                    <td>{user.name}</td>
+                    <td>{follow.usuario_id}</td>
 
-                    <td>{user.username}</td>
+                    <td>{follow.comunidade_id}</td>
 
-                    <td>{user.email}</td>
-
-                    <td>{user.birth_date}</td>
-
-                    <td>{user.bios}</td>
+                    <td>{follow.isModerator ? 'sim': 'não'}</td>
 
                     <td className='center actions'>
-                      <Link to={`/user/update/${user.id}`} className='btn-edit'>Update</Link>
+                      <Link to={`/follow/update/${follow.id}`} className='btn-edit'>Update</Link>
                     </td>
 
                     <td className='center actions'>
-                      <Link to={`/user/destroy/${user.id}`} className='btn-delete'>Destroy</Link>
+                      <Link to={`/follow/destroy/${follow.id}`} className='btn-delete'>Destroy</Link>
                     </td>
                   
                     <td className='center actions'>
-                      <Link to={`/user/show/${user.id}`} className='btn-show'>Show</Link>
+                      <Link to={`/follow/show/${follow.id}`} className='btn-show'>Show</Link>
                     </td>
 
                   </tr>
@@ -88,8 +82,8 @@ function FollowFormList() {
               )
             }
 
-            <button type="button"></button>
           </tbody>
+          <button type="button"></button>
         </table>
       </div>
     </div>

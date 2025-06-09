@@ -38,12 +38,12 @@ const ComunidadeFormDestroy = () => {
         <Fragment>
             <div className='display'>
                 <div className='card animated fadeInDown'>
-                    {comunidade.id && <h1>Exclusão de Comunidade: {comunidade.name}  </h1>}
+                    {comunidade.id && <h1>Exclusão de Comunidade: {comunidade.nome}  </h1>}
                 </div>
 
                 <form onSubmit={(e) => OnSubmit(e)}>
-                    <input defaultValue={comunidade.name} placeholder='Nome do Comunidade' readOnly={true} />
-                    <input defaultValue={comunidade.description} placeholder='Descricão da comunidade' readOnly={true} />
+                    <input defaultValue={comunidade.nome} placeholder='Nome do Comunidade' readOnly={true} />
+                    <input defaultValue={comunidade.descricao} placeholder='Descricão da comunidade' readOnly={true} />
                     <button
                         className='btn btn-delete'>
                         Excluir
