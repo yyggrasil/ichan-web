@@ -1,8 +1,30 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, Navigate, useNavigate } from 'react-router-dom'
+import { useLogin } from '../context/ContextProvider';
 
 export default function DefaultLayout({children})
 {
+    // Verificar se o Usuário está logado
+    const {token, _setUser, _setToken, user} = useLogin();
+    const navigate = useNavigate();
+    
+    if (!token){
+        return <Navigate to="/login"/>
+    }
+
+    const onLogout = (e) => {
+        e.preventDefault();
+        axiosClient.post('/login', user.email)
+            .then(()=>{
+                _setUser({});
+                _setToken(null);
+                navigate('/login');
+            })
+            .catch((error)=>{
+                console.log(error);
+            }
+        )
+    }
 
     return (
     <div id="defaultLayout">
@@ -23,8 +45,8 @@ export default function DefaultLayout({children})
                 </div>
                 <div>
                     {/* Espaço em Branco = &nbsp; */}
-                    Nome do Usuário logado &nbsp; &nbsp;
-                    <a className='btn-logout'> Logout </a>
+                    {user.name} &nbsp; &nbsp;
+                    <a onClick={onLogout} className='btn-logout' href="#"> Logout </a>
                 </div>
             </header>
             <main>

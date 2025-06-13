@@ -20,7 +20,7 @@ export default function ForgotPassword(){
                     <input type="password" placeholder="E-mail"/>
                     <input type="password" placeholder="Confirmar Senha"/>
                     <button className='btn btn-block'>Recuperar</button>
-                    <p className='message'>Está registrado?</p><Link to="/login">Login</Link>
+                    <p className='message'>Está registrado? <Link to="/login">Login</Link></p>
                 </form>
             </div>
         </div>

@@ -26,11 +26,21 @@ class LoginController extends Controller
             ]);
         }
 
-        $token = $user->createToken($user->name)->plainTextToken();
+        $token = $user->createToken($user->name)->plainTextToken;
 
         return response()->json([
-            'email'=>$email,
+            'user'=>$user,
             'token'=>$token,
         ]);
+    }
+
+    public function logout(Request $request){
+        $email = $request->email;
+        $user = User::where('email', $email )->first();
+        $user->tokens()->delete();
+
+        return response()->json([
+            'message'=>'Logout realizado com sucesso!',
+        ], 204);
     }
 }
