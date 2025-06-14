@@ -45,7 +45,7 @@ export default function DefaultLayout({children})
                 </div>
                 <div>
                     {/* Espaço em Branco = &nbsp; */}
-                    {user.name} &nbsp; &nbsp;
+                    {user.nome} &nbsp; &nbsp;
                     <a onClick={onLogout} className='btn-logout' href="#"> Logout </a>
                 </div>
             </header>

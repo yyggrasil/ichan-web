@@ -12,16 +12,17 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\ComentarioController;
 use App\Http\Controllers\FollowController;
 
-use App\Http\Controllers\Api\LoginController;
+use App\Http\Controllers\LoginController;
 
 Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
 
 Route::post('/login', [LoginController::class, 'login']);
+Route::post('/logout', [LoginController::class, 'logout']);
 
 
-Route::prefix('user')->group(function () {
+Route::prefix('/user')->group(function () {
     Route::get('/index', [UsuarioController::class, 'index']);
     Route::get('/show/{id}', [UsuarioController::class, 'show']);
 
@@ -32,7 +33,7 @@ Route::prefix('user')->group(function () {
     Route::delete('/destroy/{id}', [UsuarioController::class, 'destroy']);
 });
 
-Route::prefix('comunidade')->group(function () {
+Route::prefix('/comunidade')->group(function () {
     Route::get('/index', [ComunidadeController::class, 'index']);
     Route::get('/show/{id}', [ComunidadeController::class, 'show']);
 
@@ -43,7 +44,7 @@ Route::prefix('comunidade')->group(function () {
     Route::delete('/destroy/{id}', [ComunidadeController::class, 'destroy']);
 });
 
-Route::prefix('categoria')->group(function () {
+Route::prefix('/categoria')->group(function () {
     Route::get('/index', [CategoriaController::class, 'index']);
     Route::get('/show/{id}', [CategoriaController::class, 'show']);
 
@@ -54,7 +55,7 @@ Route::prefix('categoria')->group(function () {
     Route::delete('/destroy/{id}', [CategoriaController::class, 'destroy']);
 });
 
-Route::prefix('categoriadacomunidade')->group(function () {
+Route::prefix('/categoriadacomunidade')->group(function () {
     Route::get('/index', [CategoriaDaComunidadeController::class, 'index']);
     Route::get('/show/{id}', [CategoriaDaComunidadeController::class, 'show']);
 
@@ -65,7 +66,7 @@ Route::prefix('categoriadacomunidade')->group(function () {
     Route::delete('/destroy/{id}', [CategoriaDaComunidadeController::class, 'destroy']);
 });
 
-Route::prefix('post')->group(function () {
+Route::prefix('/post')->group(function () {
     Route::get('/index', [PostController::class, 'index']);
     Route::get('/show/{id}', [PostController::class, 'show']);
 
@@ -76,7 +77,7 @@ Route::prefix('post')->group(function () {
     Route::delete('/destroy/{id}', [PostController::class, 'destroy']);
 });
 
-Route::prefix('comentario')->group(function () {
+Route::prefix('/comentario')->group(function () {
     Route::get('/index', [ComentarioController::class, 'index']);
     Route::get('/show/{id}', [ComentarioController::class, 'show']);
 
@@ -87,7 +88,7 @@ Route::prefix('comentario')->group(function () {
     Route::delete('/destroy/{id}', [ComentarioController::class, 'destroy']);
 });
 
-Route::prefix('follow')->group(function () {
+Route::prefix('/follow')->group(function () {
     Route::get('/index', [FollowController::class, 'index']);
     Route::get('/show/{id}', [FollowController::class, 'show']);
 

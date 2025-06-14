@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -26,7 +26,7 @@ class LoginController extends Controller
             ]);
         }
 
-        $token = $user->createToken($user->name)->plainTextToken;
+        $token = $user->createToken($user->nome)->plainTextToken;
 
         return response()->json([
             'user'=>$user,

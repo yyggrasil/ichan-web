@@ -8,6 +8,7 @@ import ForgotPassword from '../views/Login/ForgotPassword'
 import UpdatePassword from '../views/Login/UpdatePassword'
 import Layout from './Layout'
 import Dashboard from '../components/Dashboard'
+import NotFound from '../views/NotFound'
 
 import UserFormList from '../views/user/UserFormList'
 import UserFormStore from '../views/user/UserFormStore'
@@ -61,59 +62,60 @@ const Rotas = () => {
         <Route path="/register" element={<Signup />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/update-password" element={<UpdatePassword />} />
-        <Route path="/dashboard" element={<Dashboard />} />
         <Route element={<Layout />}>
+          <Route path="/dashboard" element={<Dashboard />} />
 
-      {/* usuarios */}
-        <Route path="/user/index" element={<UserFormList />} />
-        <Route path="/user/store" element={<UserFormStore />} />
-        <Route path="/user/update/:id" element={<UserFormUpdate />} />
-        <Route path="/user/show/:id" element={<UserFormShow />} />
-        <Route path="/user/destroy/:id" element={<UserFormDestroy />} />
+          {/* usuarios */}
+            <Route path="/user/index" element={<UserFormList />} />
+            <Route path="/user/store" element={<UserFormStore />} />
+            <Route path="/user/update/:id" element={<UserFormUpdate />} />
+            <Route path="/user/show/:id" element={<UserFormShow />} />
+            <Route path="/user/destroy/:id" element={<UserFormDestroy />} />
 
-      {/* comunidades */}
-        <Route path="/comunidade/index" element={<ComunidadeFormList />} />
-        <Route path="/comunidade/store" element={<ComunidadeFormStore />} />
-        <Route path="/comunidade/update/:id" element={<ComunidadeFormUpdate />} />
-        <Route path="/comunidade/show/:id" element={<ComunidadeFormShow />} />
-        <Route path="/comunidade/destroy/:id" element={<ComunidadeFormDestroy />} />
+          {/* comunidades */}
+            <Route path="/comunidade/index" element={<ComunidadeFormList />} />
+            <Route path="/comunidade/store" element={<ComunidadeFormStore />} />
+            <Route path="/comunidade/update/:id" element={<ComunidadeFormUpdate />} />
+            <Route path="/comunidade/show/:id" element={<ComunidadeFormShow />} />
+            <Route path="/comunidade/destroy/:id" element={<ComunidadeFormDestroy />} />
 
-      {/* categorias */}
-        <Route path="/categoria/index" element={<CategoriaFormList />} />
-        <Route path="/categoria/store" element={<CategoriaFormStore />} />
-        <Route path="/categoria/update/:id" element={<CategoriaFormUpdate />} />
-        <Route path="/categoria/show/:id" element={<CategoriaFormShow />} />
-        <Route path="/categoria/destroy/:id" element={<CategoriaFormDestroy />} />
+          {/* categorias */}
+            <Route path="/categoria/index" element={<CategoriaFormList />} />
+            <Route path="/categoria/store" element={<CategoriaFormStore />} />
+            <Route path="/categoria/update/:id" element={<CategoriaFormUpdate />} />
+            <Route path="/categoria/show/:id" element={<CategoriaFormShow />} />
+            <Route path="/categoria/destroy/:id" element={<CategoriaFormDestroy />} />
 
-      {/* categorias da comunidade */}
-        <Route path="/categoriadacomunidade/index" element={<CategoriaDaComunidadeFormList />} />
-        <Route path="/categoriadacomunidade/store" element={<CategoriaDaComunidadeFormStore />} />
-        <Route path="/categoriadacomunidade/update/:id" element={<CategoriaDaComunidadeFormUpdate />} />
-        <Route path="/categoriadacomunidade/show/:id" element={<CategoriaDaComunidadeFormShow />} />
-        <Route path="/categoriadacomunidade/destroy/:id" element={<CategoriaDaComunidadeFormDestroy />} />
+          {/* categorias da comunidade */}
+            <Route path="/categoriadacomunidade/index" element={<CategoriaDaComunidadeFormList />} />
+            <Route path="/categoriadacomunidade/store" element={<CategoriaDaComunidadeFormStore />} />
+            <Route path="/categoriadacomunidade/update/:id" element={<CategoriaDaComunidadeFormUpdate />} />
+            <Route path="/categoriadacomunidade/show/:id" element={<CategoriaDaComunidadeFormShow />} />
+            <Route path="/categoriadacomunidade/destroy/:id" element={<CategoriaDaComunidadeFormDestroy />} />
 
-      {/* comentarios */}
-        <Route path="/comentario/index" element={<ComentarioFormList />} />
-        <Route path="/comentario/store" element={<ComentarioFormStore />} />
-        <Route path="/comentario/update/:id" element={<ComentarioFormUpdate />} />
-        <Route path="/comentario/show/:id" element={<ComentarioFormShow />} />
-        <Route path="/comentario/destroy/:id" element={<ComentarioFormDestroy />} />
+          {/* comentarios */}
+            <Route path="/comentario/index" element={<ComentarioFormList />} />
+            <Route path="/comentario/store" element={<ComentarioFormStore />} />
+            <Route path="/comentario/update/:id" element={<ComentarioFormUpdate />} />
+            <Route path="/comentario/show/:id" element={<ComentarioFormShow />} />
+            <Route path="/comentario/destroy/:id" element={<ComentarioFormDestroy />} />
 
-      {/* follows */}
-        <Route path="/follow/index" element={<FollowFormList />} />
-        <Route path="/follow/store" element={<FollowFormStore />} />
-        <Route path="/follow/update/:id" element={<FollowFormUpdate />} />
-        <Route path="/follow/show/:id" element={<FollowFormShow />} />
-        <Route path="/follow/destroy/:id" element={<FollowFormDestroy />} />
+          {/* follows */}
+            <Route path="/follow/index" element={<FollowFormList />} />
+            <Route path="/follow/store" element={<FollowFormStore />} />
+            <Route path="/follow/update/:id" element={<FollowFormUpdate />} />
+            <Route path="/follow/show/:id" element={<FollowFormShow />} />
+            <Route path="/follow/destroy/:id" element={<FollowFormDestroy />} />
 
-      {/* posts */}
-        <Route path="/post/index" element={<PostFormList />} />
-        <Route path="/post/store" element={<PostFormStore />} />
-        <Route path="/post/update/:id" element={<PostFormUpdate />} />
-        <Route path="/post/show/:id" element={<PostFormShow />} />
-        <Route path="/post/destroy/:id" element={<PostFormDestroy />} />
+          {/* posts */}
+            <Route path="/post/index" element={<PostFormList />} />
+            <Route path="/post/store" element={<PostFormStore />} />
+            <Route path="/post/update/:id" element={<PostFormUpdate />} />
+            <Route path="/post/show/:id" element={<PostFormShow />} />
+            <Route path="/post/destroy/:id" element={<PostFormDestroy />} />
 
       </Route>
+      <Route path="*" element={<NotFound />} />
     </Routes>
   )
 }
